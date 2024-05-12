@@ -10,6 +10,19 @@ import { tap } from 'rxjs/operators';
 export class ApiService {
   private BASE_URL = 'http://localhost:3000/api/v1'; // replace with your API base URL
   animeUpdated = new EventEmitter<any>();
+  darkMode = false;
+
+  setDarkMode() {
+    this.darkMode = true;
+  }
+
+  setLighMode() {
+    this.darkMode = false;
+  }
+
+  isDarkMode() {
+    return this.darkMode;
+  }
 
   constructor(private http: HttpClient) {}
 

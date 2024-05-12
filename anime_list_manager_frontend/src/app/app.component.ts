@@ -23,10 +23,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   animes: any[] = [];
+  totalEp: Number = 0;
   presentation: String = 'table';
 
   constructor(
-    private apiService: ApiService,
+    public apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
@@ -40,6 +41,13 @@ export class AppComponent implements OnInit {
     this.subscribeToAnimeCreatedEvent();
   }
 
+  countEp() {
+    this.totalEp = 0;
+    for (let index = 0; index < this.animes.length; index++) {
+      this.totalEp += this.animes[index].episode;
+    }
+  }
+
   getAnimes() {
     return new Promise<void>((resolve, reject) => {
       this.apiService.getAnimes().subscribe(
@@ -48,7 +56,7 @@ export class AppComponent implements OnInit {
           this.animes = data.sort((a: any, b: any) =>
             a.name.localeCompare(b.name)
           );
-          console.log('sorted:', this.animes);
+          this.countEp();
           resolve();
         },
         (error) => {
@@ -70,6 +78,7 @@ export class AppComponent implements OnInit {
   onAnimeCreated() {
     this.getAnimes();
   }
+
   getColor(status: String) {
     switch (status) {
       case 'To Watch':
@@ -100,6 +109,7 @@ export class AppComponent implements OnInit {
       }
 
       this.animes = newList;
+      this.countEp();
     }
   }
 
@@ -112,11 +122,16 @@ export class AppComponent implements OnInit {
       for (let index = 0; index < this.animes.length; index++) {
         const anime = this.animes[index];
 
-        if (anime.name.includes(this.searchForm.value.name)) {
+        if (
+          anime.name
+            .toUpperCase()
+            .includes(this.searchForm.value.name.toUpperCase())
+        ) {
           newList[count++] = anime;
         }
       }
       this.animes = newList;
+      this.countEp();
     }
   }
 

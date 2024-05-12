@@ -7,7 +7,12 @@ import {
   RouterOutlet,
 } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,14 +36,17 @@ export class EditComponent implements OnInit {
   anime: any;
 
   animeForm = new FormGroup({
-    name: new FormControl(''),
-    status: new FormControl(''),
-    episode: new FormControl(''),
-    image: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    status: new FormControl('', Validators.required),
+    episode: new FormControl('', Validators.required),
+    image: new FormControl('', [
+      Validators.required,
+      Validators.pattern('https?://.+'),
+    ]),
   });
 
   constructor(
-    private apiService: ApiService,
+    protected apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
   ) {}
