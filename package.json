@@ -1,0 +1,16 @@
+{
+  "name": "anime_manager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-backend": "npm start --prefix anime_list_manager_backend",
+    "start-frontend": "npm start --prefix anime_list_manager_frontend",
+    "start": "concurrently --kill-others-on-fail \"npm run start-backend\" \"npm run start-frontend\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Anime API",
+    "description": "REST API for Animes"
+  },
+  "host": "localhost:8080",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Animes",
+      "description": "API for animes in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/animes": {
+      "post": {
+        "tags": ["Animes"],
+        "description": "Create new anime in system",
+        "parameters": [
+          {
+            "name": "anime",
+            "in": "body",
+            "description": "Anime we want to create",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New Anime is created",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Animes"],
+        "summary": "Get all animes in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      }
+    },
+    "/anime/{animeId}": {
+      "parameters": [
+        {
+          "name": "animeId",
+          "in": "path",
+          "required": true,
+          "description": "ID of anime that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Animes"],
+        "summary": "Get anime with given ID",
+        "responses": {
+          "200": {
+            "description": "Anime is found",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete anime with given ID",
+        "tags": ["Animes"],
+        "responses": {
+          "200": {
+            "description": "Anime is deleted",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update anime with given ID",
+        "tags": ["Animes"],
+        "parameters": [
+          {
+            "name": "anime",
+            "in": "body",
+            "description": "Anime with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Anime is updated"
+          },
+          "schema": {
+            "$ref": "#/definitions/Anime"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Anime": {
+      "required": ["name", "_id"],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "episode": {
+          "type": "Number"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "Animes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Anime"
+      }
+    }
+  }
+}
