@@ -129,6 +129,9 @@
         },
         "status": {
           "type": "string"
+        },
+        "image": {
+          "type": "string"
         }
       }
     },

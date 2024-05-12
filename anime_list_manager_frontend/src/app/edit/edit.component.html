@@ -1,6 +1,16 @@
 <form [formGroup]="animeForm" (ngSubmit)="updateAnime()">
-    <input type="text" formControlName="name" placeholder="{{this.anime.name}}">
-    <input type="text" formControlName="status" placeholder="{{this.anime.status}}">
-    <input type="text" formControlName="episode" placeholder="{{this.anime.episode}}">
+    <input type="text" formControlName="name" placeholder="{{this.anime.name}}" placement="top"
+        ngbTooltip="Title of the Anime">
+    <select title="status" formControlName="status" placement="top"
+        ngbTooltip="Status ('To Watch', 'Watching', 'Seen', 'Dropped')">
+        <option value="To Watch">To Watch</option>
+        <option value="Watching">Watching</option>
+        <option value="Seen">Seen</option>
+        <option value="Dropped">Dropped</option>
+    </select>
+    <input type="text" formControlName="episode" placeholder="{{this.anime.episode}}" placement="top"
+        ngbTooltip="Last Episode seen">
+    <input type="url" formControlName="image" placeholder="Image" placement="{{this.anime.image}}" ngbTooltip="Url of the Image">
     <button type="submit">Submit</button>
+    <button type="button" routerLink="/" routerLinkActive="active">Cancel</button>
 </form>

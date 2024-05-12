@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -20,6 +21,7 @@ import { ActivatedRoute } from '@angular/router';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    NgbTooltipModule,
   ],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
@@ -32,6 +34,7 @@ export class EditComponent implements OnInit {
     name: new FormControl(''),
     status: new FormControl(''),
     episode: new FormControl(''),
+    image: new FormControl(''),
   });
 
   constructor(
@@ -41,7 +44,6 @@ export class EditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
     this.animeId = this.route.snapshot.paramMap.get('id');
 
     this.anime = this.apiService.getAnime(this.animeId).subscribe({
@@ -50,12 +52,13 @@ export class EditComponent implements OnInit {
         this.animeForm.patchValue({
           name: this.anime.name,
           status: this.anime.status,
-          episode: this.anime.episode
+          episode: this.anime.episode,
+          image: this.anime.image,
         });
       },
       error: (err) => {
         console.error('Error fetching anime:', err);
-      }
+      },
     });
   }
 

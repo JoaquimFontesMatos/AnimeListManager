@@ -1,6 +1,14 @@
 <form [formGroup]="animeForm" (ngSubmit)="saveAnime()">
-    <input type="text" formControlName="name" placeholder="Title">
-    <input type="text" formControlName="status" placeholder="Status ('To Watch', 'Watching', 'Watched', 'Dropped')">
-    <input type="text" formControlName="episode" placeholder="Number">
+    <input type="text" formControlName="name" placeholder="Title" placement="top" ngbTooltip="Title of the Anime">
+    <select title="status" formControlName="status" placement="top"
+        ngbTooltip="Status ('To Watch', 'Watching', 'Seen', 'Dropped')">
+        <option value="To Watch">To Watch</option>
+        <option value="Watching">Watching</option>
+        <option value="Seen">Seen</option>
+        <option value="Dropped">Dropped</option>
+    </select>
+    <input type="text" formControlName="episode" placeholder="Number" placement="top" ngbTooltip="Last Episode seen">
+    <input type="url" formControlName="image" placeholder="Image" placement="top" ngbTooltip="Url of the Image">
     <button type="submit">Submit</button>
+    <button type="button" routerLink="/" routerLinkActive="active">Cancel</button>
 </form>

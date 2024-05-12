@@ -4,6 +4,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-create',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    NgbTooltipModule,
   ],
   templateUrl: './create.component.html',
   styleUrl: './create.component.css',
@@ -23,6 +25,7 @@ export class CreateComponent {
     name: new FormControl(''),
     status: new FormControl(''),
     episode: new FormControl(''),
+    image: new FormControl(''),
   });
 
   constructor(private apiService: ApiService, private router: Router) {}
