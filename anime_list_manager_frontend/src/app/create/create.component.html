@@ -1,0 +1,6 @@
+<form [formGroup]="animeForm" (ngSubmit)="saveAnime()">
+    <input type="text" formControlName="name" placeholder="Title">
+    <input type="text" formControlName="status" placeholder="Status ('To Watch', 'Watching', 'Watched', 'Dropped')">
+    <input type="text" formControlName="episode" placeholder="Number">
+    <button type="submit">Submit</button>
+</form>

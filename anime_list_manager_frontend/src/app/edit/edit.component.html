@@ -1,0 +1,6 @@
+<form [formGroup]="animeForm" (ngSubmit)="updateAnime()">
+    <input type="text" formControlName="name" placeholder="{{this.anime.name}}">
+    <input type="text" formControlName="status" placeholder="{{this.anime.status}}">
+    <input type="text" formControlName="episode" placeholder="{{this.anime.episode}}">
+    <button type="submit">Submit</button>
+</form>
