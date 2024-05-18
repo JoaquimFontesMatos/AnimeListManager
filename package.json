@@ -6,7 +6,7 @@
   "scripts": {
     "start-backend": "npm start --prefix anime_list_manager_backend",
     "start-frontend": "npm start --prefix anime_list_manager_frontend",
-    "start": "concurrently --kill-others-on-fail \"npm run start-backend\" \"npm run start-frontend\""
+    "start": "concurrently --kill-others-on-fail \"npm run start-backend\" \"npm run start-frontend\" \"electron anime_list_manager_backend/main.js\""
   },
   "author": "",
   "license": "ISC",
