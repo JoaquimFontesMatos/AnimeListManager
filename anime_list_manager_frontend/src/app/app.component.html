@@ -1,38 +1,54 @@
-<main [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}" class="main">
-  <nav [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+<main
+  [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+  class="main">
+  <nav
+    [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
     class="navbar navbar-expand-md navbar-light bg-body-tertiary">
-    <div [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+    <div
+      [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
       class="container-fluid">
-      <span [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+      <span
+        [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
         class="navbar-brand">Anime List</span>
-      <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+      <button
+        [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
         class="navbar-toggler" type="button" aria-controls="navbarContent" aria-label="Toggle navigation">
       </button>
 
-      <div [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+      <div
+        [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
         class="navbar-collapse" id="navbarContent">
-        <ul [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+        <ul
+          [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
           class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+          <li
+            [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
             class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
             <a [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
               class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button"> Filter By Status
             </a>
-            <div [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+            <div
+              [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
               ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('All')">All</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('To Watch')">To Watch</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('Watching')">Watching</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('Seen')">Seen</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('Dropped')">Dropped</button>
             </div>
           </li>
-          <li [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+          <li
+            [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
             class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
             <a [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
               class="nav-link" routerLink="/create-anime" routerLinkActive="active" ariaCurrentWhenActive="page">Create
@@ -48,11 +64,13 @@
     </div>
   </nav>
 
-  <div [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+  <div
+    [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
     class="formContainer"> <router-outlet></router-outlet>
   </div>
 
-  <div [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+  <div
+    [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
     class="container">
     <h2>My List</h2>
     <h5>Anime Count: {{animes.length}} | Total Episodes Watched: {{totalEp}}</h5>
@@ -68,9 +86,12 @@
           <path
             d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z" />
         </svg> Table</button>
-      <button type="button" class="select_view btn btn-primary" ngbDropdownItem (click)="apiService.setDarkMode()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-fill" viewBox="0 0 16 16">
-        <path d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278"/>
-      </svg>Dark Mode</button>
+      <button type="button" class="select_view btn btn-primary" ngbDropdownItem (click)="apiService.setDarkMode()"><svg
+          xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M6 .278a.77.77 0 0 1 .08.858 7.2 7.2 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277q.792-.001 1.533-.16a.79.79 0 0 1 .81.316.73.73 0 0 1-.031.893A8.35 8.35 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.75.75 0 0 1 6 .278" />
+        </svg>Dark Mode</button>
       <button type="button" class="select_view btn btn-primary" ngbDropdownItem (click)="apiService.setLighMode()"><svg
           xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-sun-fill"
           viewBox="0 0 16 16">
@@ -94,7 +115,8 @@
       </div>
     </div>
 
-    <table [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+    <table
+      [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
       *ngIf="presentation=='table'" class="table">
       <thead>
         <tr>
@@ -103,17 +125,23 @@
           <th class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
             <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown1" role="button"> Filter By Status
             </a>
-            <div [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+            <div
+              [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
               ngbDropdownMenu aria-labelledby="navbarDropdown3" class="dropdown-menu">
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('All')">All</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('To Watch')">To Watch</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('Watching')">Watching</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('Seen')">Seen</button>
-              <button [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
+              <button
+                [ngClass]="{'dark-mode bg-dark text-light': apiService.isDarkMode(), 'light-mode bg-light text-dark': !apiService.isDarkMode()}"
                 ngbDropdownItem (click)="getByStatus('Dropped')">Dropped</button>
             </div>
           </th>
@@ -139,5 +167,23 @@
     <div *ngIf="animes.length==0">
       <h5 style="text-align: center;">There's no Animes here you weak fuck!!!!</h5>
     </div>
+
+    <button (click)="getMangas('One Piece')">Get Mangas</button>
+    <div *ngIf="presentation=='galery'" class="galery">
+      <div *ngFor="let manga of mangas;index as i" class="card" style="width: 12rem;">
+        <img src="{{manga.images.jpg.image_url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h6 class="card-title">{{manga.title}}</h6>
+          <p class="card-text" [ngStyle]="{'color': getColor(manga.status)}">Status: {{manga.status}}</p>
+          <p class="card-text">Rank: {{manga.rank}}</p>
+          <a class="card-link" routerLink="/update-anime/{{manga._id}}" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Update</a>
+          <a class="card-link" routerLink="/delete-anime/{{manga._id}}" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Delete</a>
+        </div>
+      </div>
+    </div>
   </div>
+
+
 </main>

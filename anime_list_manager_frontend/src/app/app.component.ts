@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute } from '@angular/router';
+import { JikanApiService } from './jikan-api.service';
 
 @Component({
   selector: 'app-root',
@@ -23,10 +24,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   animes: any[] = [];
+  mangas: any[] = [];
   totalEp: Number = 0;
   presentation: String = 'table';
 
   constructor(
+    private jikanApi: JikanApiService,
     public apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute
@@ -145,5 +148,18 @@ export class AppComponent implements OnInit {
         console.error('Error updating the anime list:', error);
       },
     });
+  }
+
+  getMangas(name: String) {
+    this.jikanApi.getMangas(name).subscribe(
+      (data: any) => {
+        console.log(data);
+        this.mangas = data.data;
+        console.log(this.mangas);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

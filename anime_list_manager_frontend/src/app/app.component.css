@@ -32,8 +32,13 @@ main {
 
   .card {
     img {
+      object-fit: cover;
       max-height: 8rem;
       min-height: 8rem;
+    }
+    .card-title {
+      height: 50px; /* Adjust this value as needed */
+      overflow: auto; /* Prevents long titles from spilling out of the container */
     }
     p {
       margin-bottom: 0px;
