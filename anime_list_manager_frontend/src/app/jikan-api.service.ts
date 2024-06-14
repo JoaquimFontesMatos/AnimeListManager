@@ -12,7 +12,7 @@ export class JikanApiService {
 
   getMangas(query: String): Observable<any> {
     return this.http.get(
-      this.BASE_URL + '?q=' + query + '&order_by=title&sort=asc'
+      this.BASE_URL + '?q=' + query + '&order_by=title&sort=asc&limit=10'
     );
   }
 }
