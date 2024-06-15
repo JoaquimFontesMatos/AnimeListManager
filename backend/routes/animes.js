@@ -1,35 +1,35 @@
 var express = require("express");
 var router = express.Router();
-var mangaController = require("../controllers/mangaController");
+var animeController = require("../controllers/animeController");
 
 /**
  * Get List of Animes in Database
  */
-router.get("/mangas", mangaController.getAllMangas);
+router.get("/animes", animeController.getAllAnimes);
 
 /**
  * Save an Anime to the Database
  */
-router.post("/mangas", mangaController.createManga);
+router.post("/animes", animeController.createAnime);
 
 /**
  * Get the Anime with the given Id from the Database
  */
-router.get("/manga/:mangaId", mangaController.getOneManga);
+router.get("/anime/:animeId", animeController.getOneAnime);
 
 /**
  * Update the Anime with the given Id from the Database
  */
-router.put("/manga/:mangaId", mangaController.updateManga);
+router.put("/anime/:animeId", animeController.updateAnime);
 
 /**
  * Delete the Anime with the given Id from the Database
  */
-router.delete("/manga/:mangaId", mangaController.deleteManga);
+router.delete("/anime/:animeId", animeController.deleteAnime);
 
 /**
  * Param to be used when you need the Anime and you have the id
  */
-router.param("mangaId", mangaController.getByIdManga);
+router.param("animeId", animeController.getByIdAnime);
 
 module.exports = router;

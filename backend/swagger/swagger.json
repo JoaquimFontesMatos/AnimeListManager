@@ -128,7 +128,7 @@
         }
       }
     },
-    "/animes": {
+    "/a/animes": {
       "post": {
         "tags": ["Animes"],
         "description": "Create new anime in system",
@@ -144,11 +144,17 @@
         ],
         "produces": ["application/json"],
         "responses": {
-          "200": {
+          "201": {
             "description": "New Anime is created",
             "schema": {
               "$ref": "#/definitions/Anime"
             }
+          },
+          "400": {
+            "description": "No Anime given"
+          },
+          "500": {
+            "description": "Error Saving Anime"
           }
         }
       },
@@ -159,19 +165,20 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Anime"
+              "$ref": "#/definitions/Animes"
             }
-          }
+          },
+          "500": { "description": "Error Finding Animes" }
         }
       }
     },
-    "/anime/{animeId}": {
+    "/a/anime/{animeId}": {
       "parameters": [
         {
           "name": "animeId",
           "in": "path",
           "required": true,
-          "description": "ID of anime that we want to find",
+          "description": "ID of the anime that we want to find",
           "type": "string"
         }
       ],
@@ -180,23 +187,26 @@
         "summary": "Get anime with given ID",
         "responses": {
           "200": {
-            "description": "Anime is found",
+            "description": "Anime was found",
             "schema": {
               "$ref": "#/definitions/Anime"
             }
-          }
+          },
+          "404": { "description": "Anime not Found" },
+          "400": { "description": "No Anime given" },
+          "500": { "description": "Error Finding Anime" }
         }
       },
       "delete": {
         "summary": "Delete anime with given ID",
         "tags": ["Animes"],
         "responses": {
-          "200": {
-            "description": "Anime is deleted",
-            "schema": {
-              "$ref": "#/definitions/Anime"
-            }
-          }
+          "204": {
+            "description": "Anime was deleted"
+          },
+          "404": { "description": "Anime not Found" },
+          "400": { "description": "No Anime given" },
+          "500": { "description": "Error deleting anime" }
         }
       },
       "put": {
@@ -214,11 +224,14 @@
         ],
         "responses": {
           "200": {
-            "description": "Anime is updated"
+            "description": "Anime is updated",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
           },
-          "schema": {
-            "$ref": "#/definitions/Anime"
-          }
+          "404": { "description": "Anime not Found" },
+          "400": { "description": "No Anime or Id given" },
+          "500": { "description": "Error updating Anime" }
         }
       }
     }
@@ -253,18 +266,18 @@
       }
     },
     "Anime": {
-      "required": ["name", "_id"],
+      "required": ["title"],
       "properties": {
-        "_id": {
-          "type": "string",
-          "uniqueItems": true
-        },
-        "name": {
+        "title": {
           "type": "string",
           "uniqueItems": true
         },
         "episode": {
           "type": "number"
+        },
+        "genres": {
+          "type": "array",
+          "items": { "type": "string" }
         },
         "status": {
           "type": "string"

@@ -2,9 +2,10 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var AnimeSchema = new Schema({
-  name: { type: String },
+  title: { type: String },
   episode: { type: Number },
   status: { type: String, default: "To Watch" },
+  genres: [{ type: String }],
   image: { type: String },
 });
 

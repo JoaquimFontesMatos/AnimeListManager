@@ -8,6 +8,7 @@ var swaggerUi = require("swagger-ui-express");
 var swaggerDocument = require("./swagger/swagger.json");
 
 var mangasRouter = require("./routes/mangas");
+var animesRouter = require("./routes/animes");
 
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
@@ -29,5 +30,6 @@ app.use("/mangas", mangasRouter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1/m", mangasRouter);
+app.use("/api/v1/a", animesRouter);
 
 module.exports = app;
