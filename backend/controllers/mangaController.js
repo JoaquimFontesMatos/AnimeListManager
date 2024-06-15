@@ -3,7 +3,7 @@ var Manga = require("../models/Manga");
 
 var mangaController = {};
 
-mangaController.createManga = async function (req, res) {
+mangaController.createManga = async (req, res) => {
   if (!req.body) {
     return res.status(400).send("No manga given");
   }
