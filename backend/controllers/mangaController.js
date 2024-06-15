@@ -18,7 +18,7 @@ mangaController.createManga = async function (req, res) {
   }
 };
 
-mangaController.updateManga = async function (req, res) {
+mangaController.updateManga = async (req, res) => {
   var id = req.params.mangaId;
   var mangaUpdates = req.body;
 
