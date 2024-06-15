@@ -74,7 +74,7 @@ mangaController.getOneManga = function (req, res) {
   res.status(200).json(manga);
 };
 
-mangaController.getByIdManga = async function (req, res, next, id) {
+mangaController.getByIdManga = async (req, res, next, id) => {
   try {
     var manga = await Manga.findById(id);
     if (!manga) {
