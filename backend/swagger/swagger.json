@@ -1,0 +1,284 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Anime API",
+    "description": "REST API for Animes"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Mangas",
+      "description": "API for mangas in the system"
+    },
+    {
+      "name": "Animes",
+      "description": "API for animes in the system"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/m/mangas": {
+      "post": {
+        "tags": ["Mangas"],
+        "description": "Create new manga in system",
+        "parameters": [
+          {
+            "name": "manga",
+            "in": "body",
+            "description": "Manga we want to create",
+            "schema": {
+              "$ref": "#/definitions/Manga"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "New Manga is created",
+            "schema": {
+              "$ref": "#/definitions/Manga"
+            }
+          },
+          "400": {
+            "description": "No Manga given"
+          },
+          "500": {
+            "description": "Error Saving Manga"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Mangas"],
+        "summary": "Get all mangas in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Mangas"
+            }
+          },
+          "500": { "description": "Error Finding Mangas" }
+        }
+      }
+    },
+    "/m/manga/{mangaId}": {
+      "parameters": [
+        {
+          "name": "mangaId",
+          "in": "path",
+          "required": true,
+          "description": "ID of the manga that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Mangas"],
+        "summary": "Get manga with given ID",
+        "responses": {
+          "200": {
+            "description": "Manga is found",
+            "schema": {
+              "$ref": "#/definitions/Manga"
+            }
+          },
+          "404": { "description": "Manga not Found" },
+          "400": { "description": "No Manga given" },
+          "500": { "description": "Error Finding Manga" }
+        }
+      },
+      "delete": {
+        "summary": "Delete manga with given ID",
+        "tags": ["Mangas"],
+        "responses": {
+          "204": {
+            "description": "Manga is deleted"
+          },
+          "404": { "description": "Manga not Found" },
+          "400": { "description": "No Manga given" },
+          "500": { "description": "Error deleting manga" }
+        }
+      },
+      "put": {
+        "summary": "Update manga with given ID",
+        "tags": ["Mangas"],
+        "parameters": [
+          {
+            "name": "manga",
+            "in": "body",
+            "description": "Manga with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Manga"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Manga is updated",
+            "schema": {
+              "$ref": "#/definitions/Manga"
+            }
+          },
+          "404": { "description": "Manga not Found" },
+          "400": { "description": "No Manga or Id given" },
+          "500": { "description": "Error updating manga" }
+        }
+      }
+    },
+    "/animes": {
+      "post": {
+        "tags": ["Animes"],
+        "description": "Create new anime in system",
+        "parameters": [
+          {
+            "name": "anime",
+            "in": "body",
+            "description": "Anime we want to create",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New Anime is created",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Animes"],
+        "summary": "Get all animes in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      }
+    },
+    "/anime/{animeId}": {
+      "parameters": [
+        {
+          "name": "animeId",
+          "in": "path",
+          "required": true,
+          "description": "ID of anime that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": ["Animes"],
+        "summary": "Get anime with given ID",
+        "responses": {
+          "200": {
+            "description": "Anime is found",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete anime with given ID",
+        "tags": ["Animes"],
+        "responses": {
+          "200": {
+            "description": "Anime is deleted",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update anime with given ID",
+        "tags": ["Animes"],
+        "parameters": [
+          {
+            "name": "anime",
+            "in": "body",
+            "description": "Anime with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Anime"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Anime is updated"
+          },
+          "schema": {
+            "$ref": "#/definitions/Anime"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Manga": {
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "chapter": {
+          "type": "number"
+        },
+        "genres": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "Mangas": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Manga"
+      }
+    },
+    "Anime": {
+      "required": ["name", "_id"],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "episode": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        }
+      }
+    },
+    "Animes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Anime"
+      }
+    }
+  }
+}
