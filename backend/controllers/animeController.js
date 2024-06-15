@@ -58,7 +58,8 @@ animeController.deleteAnime = async (req, res) => {
 
 animeController.getAllAnimes = async (req, res) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
     var foundAnimes = await Anime.find()
       .limit(limit * 1)
       .skip((page - 1) * limit)

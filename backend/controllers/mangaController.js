@@ -58,7 +58,8 @@ mangaController.deleteManga = async (req, res) => {
 
 mangaController.getAllMangas = async (req, res) => {
   try {
-    const { page = 1, limit = 10 } = req.query;
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
     var foundMangas = await Manga.find()
       .limit(limit * 1)
       .skip((page - 1) * limit)
