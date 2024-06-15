@@ -14,7 +14,8 @@ animeController.createAnime = async (req, res) => {
     var savedAnime = await anime.save();
     res.status(201).json(savedAnime);
   } catch (err) {
-    res.status(500).send("Error Saving Anime");
+    res.status(500).send("Error Saving Anime: " + err.message);
+    console.error(err);
   }
 };
 
