@@ -55,7 +55,7 @@ mangaController.deleteManga = async function (req, res) {
   }
 };
 
-mangaController.getAllMangas = async function (req, res) {
+mangaController.getAllMangas = async (req, res) => {
   try {
     var foundMangas = await Manga.find();
     res.status(200).json(foundMangas);
