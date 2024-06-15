@@ -64,7 +64,7 @@ mangaController.getAllMangas = async (req, res) => {
   }
 };
 
-mangaController.getOneManga = function (req, res) {
+mangaController.getOneManga = (req, res) => {
   var manga = req.manga;
 
   if (!manga) {
