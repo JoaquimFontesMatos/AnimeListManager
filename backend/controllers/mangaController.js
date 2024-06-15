@@ -14,7 +14,8 @@ mangaController.createManga = async (req, res) => {
     var savedManga = await manga.save();
     res.status(201).json(savedManga);
   } catch (err) {
-    res.status(500).send("Error Saving Manga");
+    res.status(500).send("Error Saving Manga" + err.message);
+    console.error(err);
   }
 };
 
@@ -57,7 +58,11 @@ mangaController.deleteManga = async (req, res) => {
 
 mangaController.getAllMangas = async (req, res) => {
   try {
-    var foundMangas = await Manga.find();
+    const { page = 1, limit = 10 } = req.query;
+    var foundMangas = await Manga.find()
+      .limit(limit * 1)
+      .skip((page - 1) * limit)
+      .exec();
     res.status(200).json(foundMangas);
   } catch (err) {
     res.status(500).send("Error Finding Mangas");

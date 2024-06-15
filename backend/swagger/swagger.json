@@ -54,6 +54,24 @@
       "get": {
         "tags": ["Mangas"],
         "summary": "Get all mangas in system",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "description": "Page number for pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "description": "Number of items per page"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -161,6 +179,24 @@
       "get": {
         "tags": ["Animes"],
         "summary": "Get all animes in system",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "description": "Page number for pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "description": "Number of items per page"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
