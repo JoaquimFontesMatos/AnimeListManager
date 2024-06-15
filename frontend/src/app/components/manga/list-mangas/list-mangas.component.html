@@ -1,10 +1,8 @@
 <h1 class="page-title">JustAnotherMangaList</h1>
 
-@for (manga of mangas; track $index) {
+*ngFor="let manga of mangas; trackBy: trackByIndex"
 <h1>{{manga.title}}</h1>
 <h6>{{manga.status}}</h6>
 <img src="{{manga.images.webp.image_url}}" alt="">
-@for (genre of manga.genres; track $index) {
+*ngFor="let genre of manga.genres; trackBy: trackByIndex"
 <p>{{genre.name}}</p>
-}
-}
