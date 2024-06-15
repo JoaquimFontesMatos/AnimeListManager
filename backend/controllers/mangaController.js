@@ -39,7 +39,7 @@ mangaController.updateManga = async function (req, res) {
   }
 };
 
-mangaController.deleteManga = async function (req, res) {
+mangaController.deleteManga = async (req, res) => {
   var manga = req.manga;
 
   if (!manga) {
