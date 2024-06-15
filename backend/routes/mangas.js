@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var mangaController = require("../controllers/mangaController");
 
-/* GER product listing. */
+/* GET product listing. */
 router.get("/mangas", mangaController.getAllMangas);
 router.post("/mangas", mangaController.createManga);
 
