@@ -57,7 +57,8 @@ animeController.deleteAnime = async (req, res) => {
 
 animeController.getAllAnimes = async (req, res) => {
   try {
-    var foundAnimes = await Anime.find();
+    const { page = 1, limit = 10 } = req.query;
+    var foundAnimes = await Anime.find().limit(limit * 1).skip((page - 1) * limit).exec();
     res.status(200).json(foundAnimes);
   } catch (err) {
     res.status(500).send("Error Finding Animes");
