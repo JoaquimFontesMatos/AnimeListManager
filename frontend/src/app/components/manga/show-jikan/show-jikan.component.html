@@ -1,3 +1,16 @@
+<div class="search-bar">
+    <p>{{err}}</p>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="sfw" id="sfw" placeholder="sfw"
+            (ngModelChange)="search()">
+        <label class=" form-check-label" for="sfw">SFW?</label>
+    </div>
+
+    <label class="form-label" for="mangaTitle">What's the manga title?</label>
+    <input class="form-control" type="text" [(ngModel)]="mangaTitle" id="mangaTitle" placeholder="title"
+        (ngModelChange)="search()">
+</div>
+
 <table class="table table-striped">
     <thead>
         <tr>
