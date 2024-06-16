@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class JikanMangaService {
-  private BASE_URL = 'https://api.jikan.moe/v4/manga'; // replace with your API base URL
+  private BASE_URL = 'https://api.jikan.moe/v4/manga';
 
   constructor(private http: HttpClient) {}
 
