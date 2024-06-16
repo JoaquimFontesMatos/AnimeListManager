@@ -1,0 +1,39 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Status</th>
+            <th scope="col">Chapter</th>
+            <th scope="col">Genres</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (manga of mangas; track manga.title; let i = $index) {
+        <tr>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+                <img [src]="manga.image" class="me-2" style="width: 50px" />
+                {{ manga.title }}
+            </td>
+            <td>{{ manga.status }}</td>
+            <td>{{ manga.chapter | number }}</td>
+            <td>
+                <div *ngFor="let genre of manga.genres">
+                    {{ genre }}<br>
+                </div>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="filter()">
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="filter()">
+        <option [ngValue]="10">10 items per page</option>
+        <option [ngValue]="25">25 items per page</option>
+        <option [ngValue]="50">50 items per page</option>
+    </select>
+</div>

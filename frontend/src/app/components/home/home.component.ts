@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { ListMangasComponent } from '../manga/list-mangas/list-mangas.component';
+import { ShowJikanComponent } from '../manga/show-jikan/show-jikan.component';
+import { ShowMineComponent } from '../manga/show-mine/show-mine.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ListMangasComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
+  imports: [ShowJikanComponent, ShowMineComponent],
 })
 export class HomeComponent {}
