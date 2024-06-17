@@ -30,6 +30,8 @@ export class ShowJikanComponent {
     this.jikanManga
       .getMangas(this.mangaTitle || '', this.sfw)
       .subscribe((data) => {
+        console.log(data);
+
         this.processMangas(data);
       });
   }
