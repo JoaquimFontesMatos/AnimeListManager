@@ -10,9 +10,9 @@ export class JikanMangaService {
 
   constructor(private http: HttpClient) {}
 
-  getMangas(query: String): Observable<any> {
+  getMangas(query: string, sfw: boolean): Observable<any> {
     return this.http.get(
-      this.BASE_URL + '?q=' + query + '&order_by=title&sort=asc'
+      this.BASE_URL + '?q=' + query + '&order_by=title&sort=asc&sfw=' + sfw
     );
   }
 }

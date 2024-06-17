@@ -3,8 +3,10 @@ var Schema = mongoose.Schema;
 
 var MangaSchema = new Schema({
   title: { type: String },
-  chapter: { type: Number },
-  status: { type: String, default: "To Watch" },
+  totalChapters: { type: Number },
+  currentChapter: { type: Number },
+  mangaStatus: { type: String },
+  myStatus: { type: String, default: "To Watch" },
   genres: [{ type: String }],
   image: { type: String },
 });

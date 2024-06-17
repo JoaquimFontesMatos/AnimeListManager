@@ -1,3 +1,15 @@
+<div class="search-bar">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" [(ngModel)]="sfw" id="sfw" placeholder="sfw"
+            (ngModelChange)="search()">
+        <label class=" form-check-label" for="sfw">SFW?</label>
+    </div>
+
+    <label class="form-label" for="mangaTitle">What's the manga title?</label>
+    <input class="form-control" type="text" [(ngModel)]="mangaTitle" id="mangaTitle" placeholder="title"
+        (ngModelChange)="search()">
+</div>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -17,8 +29,8 @@
                 <img [src]="manga.image" class="me-2" style="width: 50px" />
                 {{ manga.title }}
             </td>
-            <td>{{ manga.status }}</td>
-            <td>{{ manga.chapter | number }}</td>
+            <td>{{ manga.mangaStatus }}</td>
+            <td>{{ manga.totalChapters | number }}</td>
             <td>
                 <div *ngFor="let genre of manga.genres">
                     {{ genre }}<br>

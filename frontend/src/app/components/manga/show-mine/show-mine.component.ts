@@ -4,6 +4,7 @@ import { Manga } from '../../../models/Manga';
 import { CommonModule } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { startWith } from 'rxjs';
 
 @Component({
   selector: 'app-show-mine',
@@ -15,18 +16,23 @@ import { FormsModule } from '@angular/forms';
 export class ShowMineComponent implements OnInit {
   mangas?: Manga[];
   private _allMangas: Manga[] = [];
-  page = 1;
-  pageSize = 10;
+  page: number = 1;
+  pageSize: number = 10;
   collectionSize: any;
 
   constructor(private mangaService: MangaServiceService) {}
 
   ngOnInit(): void {
-    this.loadMangas();
+    this.mangaService
+      .getMangaAddedObservable()
+      .pipe(startWith(null))
+      .subscribe(() => {
+        this.loadMangas();
+      });
+  }
 
-    this.mangaService.getMangaAddedObservable().subscribe((newManga: Manga) => {
-      this.loadMangas();
-    });
+  trackByTitle(index: number, manga: Manga): any {
+    return manga.title;
   }
 
   filter(): void {
@@ -42,7 +48,7 @@ export class ShowMineComponent implements OnInit {
       this.mangas = data;
       this.collectionSize = data.length;
       this._allMangas = this.mangas;
-      this.collectionSize = this.mangas.length;
+      this.collectionSize = this._allMangas.length;
     });
     this.filter();
   }
