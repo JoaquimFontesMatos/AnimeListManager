@@ -29,8 +29,8 @@
                 <img [src]="manga.image" class="me-2" style="width: 50px" />
                 {{ manga.title }}
             </td>
-            <td>{{ manga.status }}</td>
-            <td>{{ manga.chapter | number }}</td>
+            <td>{{ manga.mangaStatus }}</td>
+            <td>{{ manga.totalChapters | number }}</td>
             <td>
                 <div *ngFor="let genre of manga.genres">
                     {{ genre }}<br>

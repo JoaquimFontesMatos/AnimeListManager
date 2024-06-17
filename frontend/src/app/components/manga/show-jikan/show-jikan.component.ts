@@ -38,8 +38,8 @@ export class ShowJikanComponent {
     for (let index = 0; index < data.data.length; index++) {
       this.mangas[index] = new Manga();
       this.mangas[index].title = data.data[index].title;
-      this.mangas[index].chapter = data.data[index].chapters;
-      this.mangas[index].status = data.data[index].status;
+      this.mangas[index].totalChapters = data.data[index].chapters;
+      this.mangas[index].mangaStatus = data.data[index].status;
       this.mangas[index].image = data.data[index].images.jpg.image_url;
 
       let genres: string[] = [];

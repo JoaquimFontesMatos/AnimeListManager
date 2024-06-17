@@ -3,9 +3,11 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Status</th>
-            <th scope="col">Chapter</th>
+            <th scope="col">Manga Status</th>
+            <th scope="col">Total Chapters</th>
             <th scope="col">Genres</th>
+            <th scope="col">Watch Status</th>
+            <th scope="col">Current Chapter</th>
         </tr>
     </thead>
     <tbody>
@@ -15,13 +17,15 @@
                 <img [src]="manga.image" class="me-2" style="width: 50px" />
                 {{ manga.title }}
             </td>
-            <td>{{ manga.status }}</td>
-            <td>{{ manga.chapter | number }}</td>
+            <td>{{ manga.mangaStatus }}</td>
+            <td>{{ manga.totalChapters | number }}</td>
             <td>
                 <div *ngFor="let genre of manga.genres">
                     {{ genre }}<br>
                 </div>
             </td>
+            <td>{{ manga.myStatus }}</td>
+            <td>{{ manga.currentChapter | number }}</td>
         </tr>
     </tbody>
 </table>
