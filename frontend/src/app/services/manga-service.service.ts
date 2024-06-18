@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Manga } from '../models/Manga';
 
-const endpoint = 'http://localhost:3000/api/v1/m/';
+const endpoint = 'https://animelistmanager.onrender.com/api/v1/m/';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
