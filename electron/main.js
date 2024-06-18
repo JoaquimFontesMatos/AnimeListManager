@@ -1,9 +1,21 @@
 const { app, BrowserWindow } = require("electron");
-const { spawn } = require("child_process");
+const httpServer = require("http-server");
 const path = require("path");
 
+
+app.whenReady().then(() => {
+  server = httpServer.createServer({
+    root: path.join(__dirname, "../frontend/dist/frontend/browser"),
+  });
+
+  server.listen(8080, () => {
+    console.log("Server listening on port 8080");
+  });
+
+  createWindow();
+});
+
 function createWindow() {
-  // Create the browser window.
   let win = new BrowserWindow({
     width: 800,
     height: 600,
@@ -15,30 +27,7 @@ function createWindow() {
     },
   });
 
-  // Load the frontend URL.
   win.loadURL(`http://localhost:8080/index.html`);
 
-  // Open the DevTools.
   win.webContents.openDevTools();
 }
-
-app.whenReady().then(() => {
-  // Start the Express server from the backend directory
-  const serverNode = spawn("node", [
-    path.join(__dirname, "backend/bin/www"),
-  ]);
-
-  serverNode.stdout.on("data", (data) => {
-    console.log(`Server: ${data}`);
-  });
-
-  serverNode.stderr.on("data", (data) => {
-    console.error(`Server Error: ${data}`);
-  });
-
-  serverNode.on("close", (code) => {
-    console.log(`Server process exited with code ${code}`);
-  });
-
-  createWindow();
-});

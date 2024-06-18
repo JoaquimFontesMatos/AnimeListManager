@@ -43,6 +43,17 @@ export class ShowJikanComponent {
       this.mangas[index].totalChapters = data.data[index].chapters;
       this.mangas[index].mangaStatus = data.data[index].status;
       this.mangas[index].image = data.data[index].images.jpg.image_url;
+      this.mangas[index].mal_id = data.data[index].mal_id;
+      this.mangas[index].score = data.data[index].score;
+      this.mangas[index].synopsis = data.data[index].synopsis;
+      this.mangas[index].type = data.data[index].type;
+      this.mangas[index].published = data.data[index].published;
+
+      let themes: string[] = [];
+      for (let i = 0; i < data.data[index].themes.length; i++) {
+        themes[i] = data.data[index].themes[i].name;
+      }
+      this.mangas[index].themes = themes;
 
       let genres: string[] = [];
       for (let i = 0; i < data.data[index].genres.length; i++) {
