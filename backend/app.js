@@ -13,7 +13,9 @@ var animesRouter = require("./routes/animes");
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose
-  .connect("mongodb://localhost:27017/justAnotherList")
+  .connect(
+    "mongodb+srv://justanotherlist:4wfzYejhon8KS6pL@cluster0.trmysi4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => console.log("connection successful"))
   .catch((err) => console.error(err));
 
