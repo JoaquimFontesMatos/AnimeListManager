@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,8 +11,10 @@ export class JikanMangaService {
   constructor(private http: HttpClient) {}
 
   getMangas(query: string, sfw: boolean): Observable<any> {
+    const headers = new HttpHeaders({ 'X-Skip-Interceptor': 'true' });
     return this.http.get(
-      this.BASE_URL + '?q=' + query + '&order_by=title&sort=asc&sfw=' + sfw
+      this.BASE_URL + '?q=' + query + '&order_by=title&sort=asc&sfw=' + sfw,
+      { headers }
     );
   }
 }

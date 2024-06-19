@@ -1,5 +1,6 @@
 export class Manga {
   constructor(
+    public _id?: string,
     public mal_id?: string,
     public mangaStatus?: string,
     public score?: number,
@@ -21,7 +22,7 @@ export class Manga {
       to: Date;
     },
     public type?: string,
-    dateEdited?: Date,
-    dateAdded?: Date
+    public dateEdited?: Date,
+    public dateAdded?: Date
   ) {}
 }

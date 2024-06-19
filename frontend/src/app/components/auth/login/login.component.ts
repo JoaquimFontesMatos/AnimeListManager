@@ -8,6 +8,8 @@ import {
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -32,6 +34,30 @@ export class LoginComponent {
     Validators.min(8),
   ]);
 
-  login() {}
-  register(){}
+  constructor(private authService: AuthService, private router: Router) {}
+
+  login() {
+    try {
+      const email = this.emailFormControl.value;
+      const password = this.passwordFormControl.value;
+
+      if (!email || !password || email == null || password == null) {
+        console.log('Invalid Values');
+      } else {
+        this.authService.login(email, password).subscribe((user: any) => {
+          if (user && user.token) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.router.navigate(['/home/']);
+          } else {
+            alert('Login Error!');
+          }
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  register() {
+    this.router.navigate(['/auth/register/']);
+  }
 }
