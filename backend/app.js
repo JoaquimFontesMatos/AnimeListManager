@@ -10,6 +10,8 @@ var swaggerDocument = require("./swagger/swagger.json");
 
 var mangasRouter = require("./routes/mangas");
 var animesRouter = require("./routes/animes");
+var usersRouter = require("./routes/user");
+var authRouter = require("./routes/auth");
 
 var mongoose = require("mongoose");
 
@@ -39,5 +41,7 @@ app.use("/mangas", mangasRouter);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1/m", mangasRouter);
 app.use("/api/v1/a", animesRouter);
+app.use("/api/v1/u", usersRouter);
+app.use("/api/v1/auth", authRouter);
 
 module.exports = app;
