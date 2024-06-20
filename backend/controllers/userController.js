@@ -15,10 +15,14 @@ userController.updateUser = async (req, res) => {
   userUpdates.updatedAt = Date.now();
 
   try {
-    var updatedUser = await User.findByIdAndUpdate(id, userUpdates, {
-      new: true,
-      runValidators: true,
-    });
+    var updatedUser = await User.findByIdAndUpdate(
+      { $eq: id },
+      { $eq: userUpdates },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
     if (!updatedUser) {
       return res.status(404).send("User not found");
     }
@@ -42,7 +46,6 @@ userController.updateUser = async (req, res) => {
 
 userController.addFavoriteManga = async (req, res) => {
   let user = req.user;
-  console.log(user);
 
   const newFavoriteManga = req.body;
 
@@ -60,7 +63,7 @@ userController.addFavoriteManga = async (req, res) => {
   try {
     // Add new favorite manga to the user's favoriteManga array only if it doesn't already exist
     const updatedUser = await User.findByIdAndUpdate(
-      user._id,
+      { $eq: user._id },
       {
         $addToSet: { favoriteManga: newFavoriteManga },
       },
@@ -86,7 +89,7 @@ userController.deleteUser = async (req, res) => {
   }
 
   try {
-    await User.findByIdAndDelete(user._id);
+    await User.findByIdAndDelete({ $eq: user._id });
     res.status(204).send();
   } catch (err) {
     console.error(err);
@@ -120,7 +123,7 @@ userController.getOneUser = (req, res) => {
 
 userController.getUserById = async (req, res, next) => {
   try {
-    var user = await User.findById(req.userId);
+    var user = await User.findById({ $eq: req.userId });
     if (!user) {
       return res.status(404).send("User not found");
     }

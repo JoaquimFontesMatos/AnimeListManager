@@ -36,7 +36,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/mangas", mangasRouter);
+// set up rate limiter: maximum of 15 requests per minute
+var RateLimit = require("express-rate-limit");
+var limiter = RateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 15, // max 100 requests per windowMs
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1/m", mangasRouter);
