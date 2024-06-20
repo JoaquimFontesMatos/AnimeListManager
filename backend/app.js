@@ -36,10 +36,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// set up rate limiter: maximum of five requests per minute
+// set up rate limiter: maximum of 15 requests per minute
 var RateLimit = require("express-rate-limit");
 var limiter = RateLimit({
-  windowMs: 60 * 1000, // 15 minutes
+  windowMs: 60 * 1000, // 1 minute
   max: 15, // max 100 requests per windowMs
 });
 
