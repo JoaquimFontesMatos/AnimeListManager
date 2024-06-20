@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { FavoritedManga, User } from '../models/User';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.prod';
 
 const endpoint = environment.backendUrl + 'u/';
 const httpOptions = {
