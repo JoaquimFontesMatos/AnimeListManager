@@ -40,9 +40,13 @@ mangaController.updateManga = async (req, res) => {
   }
 
   try {
-    var updatedManga = await Manga.findByIdAndUpdate(id, mangaUpdates, {
-      new: true,
-    });
+    var updatedManga = await Manga.findByIdAndUpdate(
+      { $eq: id },
+      { $eq: mangaUpdates },
+      {
+        new: true,
+      }
+    );
     if (!updatedManga) {
       return res.status(404).send("Manga not found");
     }
@@ -60,7 +64,7 @@ mangaController.deleteManga = async (req, res) => {
   }
 
   try {
-    await Manga.findByIdAndDelete(manga._id);
+    await Manga.findByIdAndDelete({ $eq: manga._id });
     res.status(204).send();
   } catch (err) {
     console.error(err);
@@ -151,7 +155,7 @@ mangaController.getOneManga = (req, res) => {
 
 mangaController.getByIdManga = async (req, res, next, id) => {
   try {
-    var manga = await Manga.findById(id);
+    var manga = await Manga.findById({ $eq: id });
     if (!manga) {
       return res.status(404).send("Manga not found");
     }
@@ -170,7 +174,7 @@ mangaController.getByMalIdManga = async (req, res) => {
   try {
     let malId = req.params.malId;
 
-    var manga = await Manga.findOne({ mal_id: malId });
+    var manga = await Manga.findOne({ mal_id: { $eq: malId } });
 
     if (!manga) {
       return res.status(200).send(false);

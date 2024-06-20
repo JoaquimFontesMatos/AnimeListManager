@@ -7,7 +7,7 @@ var authController = {};
 
 authController.login = async function (req, res) {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: { $eq: req.body.email } });
 
     if (!user) {
       return res.status(404).send("No user found.");
