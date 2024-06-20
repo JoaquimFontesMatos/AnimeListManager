@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
-import { Manga } from '../models/Manga';
+import { Manga, UserManga } from '../models/Manga';
 import { environment } from '../../environments/environment.prod';
 
 const endpoint = environment.backendUrl + 'm/';
