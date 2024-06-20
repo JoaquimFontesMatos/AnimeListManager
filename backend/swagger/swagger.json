@@ -84,7 +84,12 @@
             }
           },
           "500": { "description": "Error Finding Mangas" }
-        }
+        },
+        "security": [
+          {
+            "user_jwt_auth": []
+          }
+        ]
       }
     },
     "/m/manga/{mangaId}": {
