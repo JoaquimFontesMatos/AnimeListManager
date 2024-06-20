@@ -502,7 +502,7 @@
         "favouriteManga": {
           "type": "array",
           "items": {
-            "id": { "$oid": { "type": "string" } },
+            "mal_id": { "type": "number" },
             "watchStatus": { "type": "string", "default": "To Watch" },
             "currentChapter": { "type": "number", "default": 0 }
           }

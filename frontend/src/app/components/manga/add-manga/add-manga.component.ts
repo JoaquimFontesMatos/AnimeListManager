@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User, FavoritedManga } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-add-manga',
@@ -73,9 +74,9 @@ export class AddMangaComponent {
       }
 
       // If manga is not saved, proceed to save it
-      const savedManga = await this.mangaService
-        .saveManga(this.manga)
-        .toPromise();
+      const savedManga = await firstValueFrom(
+        this.mangaService.saveManga(this.manga)
+      );
 
       if (savedManga) {
         console.log('Manga saved successfully:', savedManga);
