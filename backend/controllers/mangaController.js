@@ -99,6 +99,8 @@ mangaController.getAllMangas = async (req, res) => {
       {
         $unwind: "$mangas", // Unwind the mangas array
       },
+      { $skip: (page - 1) * limit },
+      { $limit: limit },
       {
         $project:
           /**
@@ -129,8 +131,6 @@ mangaController.getAllMangas = async (req, res) => {
           userMangas: 1, // Include the mangas array
         },
       },
-      { $skip: (page - 1) * limit },
-      { $limit: limit },
     ]).exec();
 
     res.status(200).json(foundMangas[0].userMangas);

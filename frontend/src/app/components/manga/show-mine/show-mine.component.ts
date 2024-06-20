@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MangaServiceService } from '../../../services/manga-service.service';
-import { Manga, UserManga } from '../../../models/Manga';
+import { UserManga } from '../../../models/Manga';
 import { CommonModule } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { startWith } from 'rxjs';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-show-mine',
@@ -19,38 +17,35 @@ export class ShowMineComponent implements OnInit {
   private _allMangas: UserManga[] = [];
   page: number = 1;
   pageSize: number = 10;
-  collectionSize: any;
+  collectionSize: number = 0;
 
   constructor(private mangaService: MangaServiceService) {}
 
   ngOnInit(): void {
-    this.mangaService
-      .getMangaAddedObservable()
-      .pipe(startWith(null))
-      .subscribe(() => {
-        this.loadMangas();
-      });
+    this.mangaService.getMangaAddedObservable().subscribe(() => {
+      this.reloadMangas();
+    });
+
+    this.reloadMangas();
   }
 
-  trackByTitle(index: number, mangaUser: UserManga): any {
-    return mangaUser.manga.title;
+  trackByMalId(index: number, mangaUser: UserManga): any {
+    return mangaUser.favoriteManga.mal_id;
+  }
+
+  reloadMangas(): void {
+    setTimeout(() => {
+      this.mangaService.getMangas(1, 100000).subscribe((data: UserManga[]) => {
+        this._allMangas = data;
+        this.collectionSize = data.length;
+        this.filter();
+      });
+    }, 1000); // Adjust the delay time as needed
   }
 
   filter(): void {
-    this.mangaService
-      .getMangas(this.page, this.pageSize)
-      .subscribe((data: UserManga[]) => {
-        this.mangasUser = data;
-      });
-  }
-
-  loadMangas(): void {
-    this.mangaService.getMangas(1, 100000).subscribe((data: UserManga[]) => {
-      this.mangasUser = data;
-      this.collectionSize = data.length;
-      this._allMangas = this.mangasUser;
-      this.collectionSize = this._allMangas.length;
-    });
-    this.filter();
+    const startIndex = (this.page - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.mangasUser = this._allMangas.slice(startIndex, endIndex);
   }
 }

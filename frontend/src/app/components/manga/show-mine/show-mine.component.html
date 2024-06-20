@@ -11,8 +11,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let mangaUser of mangasUser; trackBy: trackByTitle; let i = index">
-            <th scope="row">{{ i + 1 }}</th>
+        <tr *ngFor="let mangaUser of mangasUser; let i = index; trackBy: trackByMalId">
+            <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
             <td>
                 <img [src]="mangaUser.manga.image" class="me-2" style="width: 50px" />
                 {{ mangaUser.manga.title }}
@@ -21,7 +21,7 @@
             <td>{{ mangaUser.manga.totalChapters | number }}</td>
             <td>
                 <div *ngFor="let genre of mangaUser.manga.genres">
-                    {{ genre }}<br>
+                    {{ genre }}<br />
                 </div>
             </td>
             <td>{{ mangaUser.favoriteManga.watchStatus }}</td>
