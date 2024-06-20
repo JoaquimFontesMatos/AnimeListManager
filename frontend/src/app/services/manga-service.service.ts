@@ -19,10 +19,14 @@ export class MangaServiceService {
 
   constructor(private http: HttpClient) {}
 
-  getMangas(page: number, pageSize: number): Observable<Manga[]> {
-    return this.http.get<Manga[]>(
+  getMangas(page: number, pageSize: number): Observable<UserManga[]> {
+    return this.http.get<UserManga[]>(
       endpoint + 'mangas' + '?page=' + page + '&limit=' + pageSize
     );
+  }
+
+  isMangaMalIdSaved(id: number): Observable<boolean> {
+    return this.http.get<boolean>(endpoint + 'manga-mal-id/' + id);
   }
 
   saveManga(manga: Manga): Observable<Manga> {

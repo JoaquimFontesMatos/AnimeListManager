@@ -2,14 +2,12 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var MangaSchema = new Schema({
-  mal_id: { type: Number },
+  mal_id: { type: Number, unique: true, required: true },
   title: { type: String },
   score: { type: Number },
   synopsis: { type: String },
   totalChapters: { type: Number },
-  currentChapter: { type: Number },
   mangaStatus: { type: String },
-  myStatus: { type: String, default: "To Watch" },
   genres: [{ type: String }],
   image: { type: String },
   themes: [{ type: String }],
@@ -34,5 +32,7 @@ var MangaSchema = new Schema({
   dateEdited: { type: Date },
   dateAdded: { type: Date, default: Date.now },
 });
+
+
 
 module.exports = mongoose.model("Manga", MangaSchema);

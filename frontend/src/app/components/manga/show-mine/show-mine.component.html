@@ -11,21 +11,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let manga of mangas; trackBy: trackByTitle; let i = index">
+        <tr *ngFor="let mangaUser of mangasUser; trackBy: trackByTitle; let i = index">
             <th scope="row">{{ i + 1 }}</th>
             <td>
-                <img [src]="manga.image" class="me-2" style="width: 50px" />
-                {{ manga.title }}
+                <img [src]="mangaUser.manga.image" class="me-2" style="width: 50px" />
+                {{ mangaUser.manga.title }}
             </td>
-            <td>{{ manga.mangaStatus }}</td>
-            <td>{{ manga.totalChapters | number }}</td>
+            <td>{{ mangaUser.manga.mangaStatus }}</td>
+            <td>{{ mangaUser.manga.totalChapters | number }}</td>
             <td>
-                <div *ngFor="let genre of manga.genres">
+                <div *ngFor="let genre of mangaUser.manga.genres">
                     {{ genre }}<br>
                 </div>
             </td>
-            <td>{{ manga.myStatus }}</td>
-            <td>{{ manga.currentChapter | number }}</td>
+            <td>{{ mangaUser.favoriteManga.watchStatus }}</td>
+            <td>{{ mangaUser.favoriteManga.currentChapter | number }}</td>
         </tr>
     </tbody>
 </table>
