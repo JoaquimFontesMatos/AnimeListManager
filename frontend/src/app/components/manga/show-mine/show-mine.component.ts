@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MangaServiceService } from '../../../services/manga-service.service';
-import { Manga } from '../../../models/Manga';
+import { Manga, UserManga } from '../../../models/Manga';
 import { CommonModule } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { startWith } from 'rxjs';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-show-mine',
@@ -14,8 +15,8 @@ import { startWith } from 'rxjs';
   imports: [CommonModule, NgbPagination, FormsModule],
 })
 export class ShowMineComponent implements OnInit {
-  mangas?: Manga[];
-  private _allMangas: Manga[] = [];
+  mangasUser?: UserManga[];
+  private _allMangas: UserManga[] = [];
   page: number = 1;
   pageSize: number = 10;
   collectionSize: any;
@@ -31,23 +32,23 @@ export class ShowMineComponent implements OnInit {
       });
   }
 
-  trackByTitle(index: number, manga: Manga): any {
-    return manga.title;
+  trackByTitle(index: number, mangaUser: UserManga): any {
+    return mangaUser.manga.title;
   }
 
   filter(): void {
     this.mangaService
       .getMangas(this.page, this.pageSize)
-      .subscribe((data: Manga[]) => {
-        this.mangas = data;
+      .subscribe((data: UserManga[]) => {
+        this.mangasUser = data;
       });
   }
 
   loadMangas(): void {
-    this.mangaService.getMangas(1, 100000).subscribe((data: Manga[]) => {
-      this.mangas = data;
+    this.mangaService.getMangas(1, 100000).subscribe((data: UserManga[]) => {
+      this.mangasUser = data;
       this.collectionSize = data.length;
-      this._allMangas = this.mangas;
+      this._allMangas = this.mangasUser;
       this.collectionSize = this._allMangas.length;
     });
     this.filter();

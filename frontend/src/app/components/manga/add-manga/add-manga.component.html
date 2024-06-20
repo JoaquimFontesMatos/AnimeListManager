@@ -8,7 +8,7 @@
             <div class="mb-3">
                 <div class="col-md-6">
                     <label class="form-label" for="currentChapter">Current Chapter</label>
-                    <input class="form-control" type="number" [(ngModel)]="favouritedManga.currentChapter"
+                    <input class="form-control" type="number" [(ngModel)]="favoritedManga.currentChapter"
                         #currentChapter="ngModel" name="currentChapter" id="currentChapter" required
                         max="{{manga.totalChapters || 0}}" min="0">
 
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label" for="myStatus">Watch Status</label>
-                    <select required class="form-control" [(ngModel)]="favouritedManga.watchStatus" #myStatus="ngModel"
+                    <select required class="form-control" [(ngModel)]="favoritedManga.watchStatus" #myStatus="ngModel"
                         name="myStatus" id="myStatus">
                         <option selected value="To Watch">To Watch</option>
                         <option value="Watching">Watching</option>

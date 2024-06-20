@@ -17,6 +17,7 @@ userController.updateUser = async (req, res) => {
   try {
     var updatedUser = await User.findByIdAndUpdate(id, userUpdates, {
       new: true,
+      runValidators: true,
     });
     if (!updatedUser) {
       return res.status(404).send("User not found");
@@ -36,6 +37,44 @@ userController.updateUser = async (req, res) => {
       res.status(409).json({ message: error });
     }
     res.status(500).send("Error updating User");
+  }
+};
+
+userController.addFavoriteManga = async (req, res) => {
+  let user = req.user;
+  console.log(user);
+
+  const newFavoriteManga = req.body;
+
+  if (!user._id || !newFavoriteManga || !newFavoriteManga.mal_id) {
+    return res.status(400).send("Invalid user ID or favorite manga data");
+  }
+
+  const isMangaAlreadyAdded = user.favoriteManga.some(
+    (manga) => manga.mal_id === newFavoriteManga.mal_id
+  );
+  if (isMangaAlreadyAdded) {
+    return res.status(409).send("Manga already exists in favorites");
+  }
+
+  try {
+    // Add new favorite manga to the user's favoriteManga array only if it doesn't already exist
+    const updatedUser = await User.findByIdAndUpdate(
+      user._id,
+      {
+        $addToSet: { favoriteManga: newFavoriteManga },
+      },
+      { new: true, runValidators: true } // Ensure validation is run on update and return the updated document
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send("User not found");
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error("Error updating User's favorite manga:", err);
+    res.status(500).send("Error updating User's favorite manga");
   }
 };
 

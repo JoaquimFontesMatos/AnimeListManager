@@ -33,4 +33,6 @@ var MangaSchema = new Schema({
   dateAdded: { type: Date, default: Date.now },
 });
 
+
+
 module.exports = mongoose.model("Manga", MangaSchema);

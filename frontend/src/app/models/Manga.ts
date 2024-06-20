@@ -1,7 +1,9 @@
+import { FavoritedManga } from './User';
+
 export class Manga {
   constructor(
     public _id?: string,
-    public mal_id?: string,
+    public mal_id?: number,
     public mangaStatus?: string,
     public score?: number,
     public synopsis?: string,
@@ -25,4 +27,8 @@ export class Manga {
     public dateEdited?: Date,
     public dateAdded?: Date
   ) {}
+}
+
+export class UserManga {
+  constructor(public manga: Manga, public favoriteManga: FavoritedManga) {}
 }

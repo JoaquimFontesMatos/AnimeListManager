@@ -23,6 +23,13 @@ router.get(
  */
 router.put("/user", authController.verifyToken, userController.updateUser);
 
+router.put(
+  "/add-favorite-manga",
+  authController.verifyToken,
+  userController.getUserById,
+  userController.addFavoriteManga
+);
+
 /**
  * Delete the User with the given Id from the Database
  */

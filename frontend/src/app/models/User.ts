@@ -1,6 +1,6 @@
-export class FavouritedManga {
+export class FavoritedManga {
   constructor(
-    public id?: { $oid?: string },
+    public mal_id?: number,
     public watchStatus: string = 'To Watch',
     public currentChapter: number = 0
   ) {}
@@ -11,10 +11,8 @@ export class User {
     public username?: string,
     public email?: string,
     public password?: string,
-    public favouriteManga?: FavouritedManga[],
+    public favoriteManga: FavoritedManga[] = [],
     public updatedAt?: Date,
     public createdAt?: Date
-  ) {
-    this.favouriteManga = new Array<FavouritedManga>();
-  }
+  ) {}
 }

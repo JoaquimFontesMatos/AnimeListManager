@@ -1,11 +1,18 @@
 var express = require("express");
 var router = express.Router();
 var mangaController = require("../controllers/mangaController");
+var authController = require("../controllers/authController");
+var userController = require("../controllers/userController");
 
 /**
  * Get List of Animes in Database
  */
-router.get("/mangas", mangaController.getAllMangas);
+router.get(
+  "/mangas",
+  authController.verifyToken,
+  userController.getUserById,
+  mangaController.getAllMangas
+);
 
 /**
  * Save an Anime to the Database
@@ -16,6 +23,8 @@ router.post("/mangas", mangaController.createManga);
  * Get the Anime with the given Id from the Database
  */
 router.get("/manga/:mangaId", mangaController.getOneManga);
+
+router.get("/manga-mal-id/:malId", mangaController.getByMalIdManga);
 
 /**
  * Update the Anime with the given Id from the Database
