@@ -2,6 +2,8 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
+
 var logger = require("morgan");
 var cors = require("cors");
 require("dotenv").config();
@@ -34,6 +36,15 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+const secret = process.env.SECRET;
+
+app.use(
+  session({
+    secret: secret,
+    resave: true, // Set resave to true
+    saveUninitialized: true,
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 // set up rate limiter: maximum of 15 requests per minute
