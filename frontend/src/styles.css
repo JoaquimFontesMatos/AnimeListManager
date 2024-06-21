@@ -3,10 +3,11 @@
   /* colors */
   --clr-white: hsl(220, 37%, 100%);
   --clr-surface: hsl(220, 37%, 97%);
-  --clr-text: hsl(244, 44%, 14%);
+  --clr-text: #bbc8de;
 
-  --primary-color: red;
-  --secondary-color: green;
+  --primary-color: #181818;
+  --secondary-color: rgba(16, 70, 105, 0.404);
+  --accent-color: rgba(44, 206, 255, 0.404);
 
   --clr-yellow-400: hsl(42, 99%, 69%);
   --clr-yellow-300: hsl(47, 100%, 90%);

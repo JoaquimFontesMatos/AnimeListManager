@@ -1,9 +1,32 @@
+.wrapper {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .login-form {
+  border: 1px solid var(--accent-color);
+  padding: 1rem;
   min-width: 150px;
   max-width: 500px;
   width: 100%;
 }
 
+.label,
+.input {
+  color: var(--clr-text);
+}
+.error {
+  color: rgb(0, 0, 0);
+}
+
 .login-full-width {
   width: 100%;
+  color: var(--clr-text);
+}
+
+.button-login {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--accent-color);
+  color: var(--clr-text);
 }

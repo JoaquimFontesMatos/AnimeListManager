@@ -18,7 +18,5 @@ export class AppComponent {
     const newTheme =
       this.themeService.currentThemeName === 'light' ? 'dark' : 'light';
     this.themeService.setTheme(newTheme);
-    console.log(this.themeService.currentThemeColors);
-    
   }
 }
