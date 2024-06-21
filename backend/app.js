@@ -2,6 +2,8 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
+var session = require("express-session");
+
 var logger = require("morgan");
 var cors = require("cors");
 require("dotenv").config();
@@ -19,7 +21,9 @@ const dbUser = process.env.DB_USER;
 const dbPass = encodeURIComponent(process.env.DB_PASS);
 const dbName = "justAnotherList";
 
-const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.trmysi4.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
+//const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.trmysi4.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
+
+const uri = `mongodb://localhost:27017`;
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -34,6 +38,15 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+const secret = process.env.SECRET;
+
+app.use(
+  session({
+    secret: secret,
+    resave: true, // Set resave to true
+    saveUninitialized: true,
+  })
+);
 app.use(express.static(path.join(__dirname, "public")));
 
 // set up rate limiter: maximum of 15 requests per minute

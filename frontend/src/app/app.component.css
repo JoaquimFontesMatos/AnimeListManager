@@ -1,0 +1,17 @@
+button {
+  background: var(--primary-color);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--primary-color);
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid var(--accent-color);
+  border-radius: 50%;
+
+  svg {
+    background-color: transparent;
+    fill: var(--clr-text);
+  }
+}

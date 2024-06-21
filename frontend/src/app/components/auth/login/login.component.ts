@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {
   FormControl,
   Validators,
@@ -23,6 +23,7 @@ import { Router } from '@angular/router';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
+  encapsulation: ViewEncapsulation.None, // Disable view encapsulation
 })
 export class LoginComponent {
   emailFormControl = new FormControl('', [
