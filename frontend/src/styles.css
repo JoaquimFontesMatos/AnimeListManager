@@ -5,6 +5,9 @@
   --clr-surface: hsl(220, 37%, 97%);
   --clr-text: hsl(244, 44%, 14%);
 
+  --primary-color: red;
+  --secondary-color: green;
+
   --clr-yellow-400: hsl(42, 99%, 69%);
   --clr-yellow-300: hsl(47, 100%, 90%);
   --clr-purple-400: hsl(280, 96%, 45%);
@@ -30,7 +33,7 @@
 }
 
 body {
-  background: var(--clr-surface);
+  background: var(--primary-color);
   color: var(--clr-text);
   font-family: var(--ff-base);
   font-size: var(--fs-300);
@@ -52,4 +55,8 @@ body {
 
 .subtitle {
   font-size: var(--fs-400);
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: var(--secondary-color) !important;
 }
