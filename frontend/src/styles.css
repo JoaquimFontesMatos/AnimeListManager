@@ -6,15 +6,10 @@
   --clr-text: #bbc8de;
 
   --primary-color: #181818;
-  --secondary-color: rgba(16, 70, 105, 0.404);
+  --secondary-color: rgba(11, 44, 67, 0.404);
   --accent-color: rgba(44, 206, 255, 0.404);
 
-  --clr-yellow-400: hsl(42, 99%, 69%);
-  --clr-yellow-300: hsl(47, 100%, 90%);
-  --clr-purple-400: hsl(280, 96%, 45%);
-  --clr-purple-300: hsl(282, 89%, 90%);
-  --clr-cyan-400: hsl(198, 99%, 49%);
-  --clr-cyan-300: hsl(240, 100%, 90%);
+  --invert: invert(1);
 
   /* font families */
   --ff-base: "IBM Plex Sans", sans-serif;

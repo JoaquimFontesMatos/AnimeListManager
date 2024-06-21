@@ -1,5 +1,8 @@
 <div class="wrapper">
+    <div class="background-image"></div>
+
     <form class="login-form">
+        <h2>Login</h2>
         <mat-form-field class="login-full-width">
             <mat-label class="label">Email</mat-label>
             <input class="input" type="email" matInput [formControl]="emailFormControl"
@@ -8,24 +11,21 @@
             <mat-error class="error">Please enter a valid email address</mat-error>
             }
             @if (emailFormControl.hasError('required')) {
-            <mat-error>Email is <strong>required</strong></mat-error>
+            <mat-error class="error">Email is <strong>required</strong></mat-error>
             }
         </mat-form-field>
         <mat-form-field class="login-full-width">
             <mat-label class="label">Password</mat-label>
             <input type="password" matInput [formControl]="passwordFormControl" placeholder="password" min="8">
             @if (passwordFormControl.hasError('min') && !passwordFormControl.hasError('required')) {
-            <mat-error>Please enter at least 8 characters</mat-error>
+            <mat-error class="error">Please enter at least 8 characters</mat-error>
             }
             @if (passwordFormControl.hasError('required')) {
-            <mat-error>Password is <strong>required</strong></mat-error>
+            <mat-error class="error">Password is <strong>required</strong></mat-error>
             }
         </mat-form-field>
-        <div class="btn-group">
-            <button class="btn btn-secondary button-login" type="button"
-                [disabled]="emailFormControl.invalid||passwordFormControl.invalid" (click)="login()">Login</button>
-            <button class="btn  btn-secondary button-login" type="button" (click)="register()">Register</button>
-        </div>
+        <button class="button-login" type="button" mat-stroked-button
+            [disabled]="emailFormControl.invalid||passwordFormControl.invalid" (click)="login()">Login</button>
+        <button class="button-login" type="button" mat-stroked-button (click)="register()">Register</button>
     </form>
-
 </div>
