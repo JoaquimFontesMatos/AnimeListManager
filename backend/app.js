@@ -21,9 +21,7 @@ const dbUser = process.env.DB_USER;
 const dbPass = encodeURIComponent(process.env.DB_PASS);
 const dbName = "justAnotherList";
 
-//const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.trmysi4.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
-
-const uri = `mongodb://localhost:27017`;
+const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.trmysi4.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.Promise = global.Promise;
 mongoose
@@ -53,7 +51,7 @@ app.use(express.static(path.join(__dirname, "public")));
 var RateLimit = require("express-rate-limit");
 var limiter = RateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 15, // max 100 requests per windowMs
+  max: 50, // max 100 requests per windowMs
 });
 
 // apply rate limiter to all requests

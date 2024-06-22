@@ -9,8 +9,9 @@
 .background-image {
   width: 100%;
   height: 100vh;
-  background-image: url("/assets/login.jpeg");
   filter: var(--invert);
+  transition: filter var(--transition-duration) linear,
+    background-image var(--transition-duration) ease;
 }
 
 .login-form {
@@ -23,6 +24,9 @@
   padding: 1rem;
   width: 300px;
   text-align: center;
+  transition: color var(--transition-duration) linear,
+    background-color var(--transition-duration) linear,
+    --secondary-color var(--transition-duration) linear;
 }
 
 h2 {
@@ -66,4 +70,8 @@ h2 {
 
 .mdc-text-field__input {
   color: var(--clr-text) !important;
+}
+
+.button-wrapper {
+  margin-top: 10px;
 }

@@ -74,10 +74,6 @@ mangaController.deleteManga = async (req, res) => {
 
 mangaController.getAllMangas = async (req, res) => {
   try {
-    // Get pagination parameters
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 10;
-
     // Perform the aggregation to look up mangas by `mal_id`
     const foundMangas = await User.aggregate([
       {
@@ -103,8 +99,6 @@ mangaController.getAllMangas = async (req, res) => {
       {
         $unwind: "$mangas", // Unwind the mangas array
       },
-      { $skip: (page - 1) * limit },
-      { $limit: limit },
       {
         $project:
           /**
