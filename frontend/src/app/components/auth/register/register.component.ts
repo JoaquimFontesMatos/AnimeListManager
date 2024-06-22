@@ -13,21 +13,23 @@ import { User } from '../../../models/User';
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
+import { BackgroundComponent } from "../../extras/background/background.component";
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatProgressBarModule,
-    CommonModule,
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css',
+    selector: 'app-register',
+    standalone: true,
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.css',
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatProgressBarModule,
+        CommonModule,
+        BackgroundComponent
+    ]
 })
 export class RegisterComponent {
   usernameFormControl = new FormControl('', [Validators.required]);
