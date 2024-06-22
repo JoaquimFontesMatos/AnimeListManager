@@ -21,9 +21,7 @@ const dbUser = process.env.DB_USER;
 const dbPass = encodeURIComponent(process.env.DB_PASS);
 const dbName = "justAnotherList";
 
-//const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.trmysi4.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
-
-const uri = `mongodb://localhost:27017`;
+const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.trmysi4.mongodb.net/${dbName}?retryWrites=true&w=majority&appName=Cluster0`;
 
 mongoose.Promise = global.Promise;
 mongoose

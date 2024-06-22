@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="background-image"></div>
+    <div class="background-image" [style.background-image]="'url(' + images[currentImageIndex] + ')'"></div>
 
     <form class="login-form">
         <h2>Login</h2>
@@ -24,8 +24,13 @@
             <mat-error class="error">Password is <strong>required</strong></mat-error>
             }
         </mat-form-field>
-        <button class="button-login" type="button" mat-stroked-button
-            [disabled]="emailFormControl.invalid||passwordFormControl.invalid" (click)="login()">Login</button>
-        <button class="button-login" type="button" mat-stroked-button (click)="register()">Register</button>
+        <div *ngIf="loading">Loading...</div>
+        <mat-progress-bar mode="buffer" *ngIf="loading"></mat-progress-bar>
+
+        <div class="button-wrapper">
+            <button class="button-login" type="button" mat-stroked-button
+                [disabled]="emailFormControl.invalid||passwordFormControl.invalid" (click)="login()">Login</button>
+            <button class="button-login" type="button" mat-stroked-button (click)="register()">Register</button>
+        </div>
     </form>
 </div>

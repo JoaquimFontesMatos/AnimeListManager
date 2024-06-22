@@ -11,6 +11,7 @@
   height: 100vh;
   background-image: url("/assets/login.jpeg");
   filter: var(--invert);
+  transition: filter var(--transition-duration) linear;
 }
 
 .register-form {
@@ -23,6 +24,9 @@
   padding: 1rem;
   width: 300px;
   text-align: center;
+  transition: color var(--transition-duration) linear,
+    background-color var(--transition-duration) linear,
+    --secondary-color var(--transition-duration) linear;
 }
 
 h2 {
