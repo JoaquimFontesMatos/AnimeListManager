@@ -1,6 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject, BehaviorSubject, tap, filter, catchError, throwError } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  BehaviorSubject,
+  tap,
+  filter,
+  catchError,
+  throwError,
+} from 'rxjs';
 import { Manga, UserManga } from '../models/Manga';
 import { environment } from '../../environments/environment';
 
@@ -19,10 +27,8 @@ export class MangaServiceService {
 
   constructor(private http: HttpClient) {}
 
-  getMangas(page: number, pageSize: number): Observable<UserManga[]> {
-    return this.http.get<UserManga[]>(
-      endpoint + 'mangas' + '?page=' + page + '&limit=' + pageSize
-    );
+  getMangas(): Observable<UserManga[]> {
+    return this.http.get<UserManga[]>(endpoint + 'mangas');
   }
 
   isMangaMalIdSaved(id: number): Observable<boolean> {

@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, "public")));
 var RateLimit = require("express-rate-limit");
 var limiter = RateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 15, // max 100 requests per windowMs
+  max: 50, // max 100 requests per windowMs
 });
 
 // apply rate limiter to all requests

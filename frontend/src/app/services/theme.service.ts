@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ThemeService {
-  private currentTheme: string = 'dark'; // Default theme
+  private currentTheme: string;
 
   // Define your theme colors here
   private themes: Record<string, Record<string, string>> = {
@@ -24,6 +24,19 @@ export class ThemeService {
     },
   };
 
+  constructor() {
+    let themeStored = localStorage.getItem('theme');
+
+    if (themeStored) {
+      document.documentElement.setAttribute('data-theme', themeStored);
+      this.currentTheme = themeStored;
+    } else {
+      this.currentTheme = 'dark';
+    }
+
+    this.setTheme(this.currentTheme);
+  }
+
   // Getter for the current theme
   get currentThemeName(): string {
     return this.currentTheme;
@@ -38,6 +51,7 @@ export class ThemeService {
     if (this.themes[themeName]) {
       this.currentTheme = themeName;
       await this.applyTheme(this.themes[themeName]);
+      localStorage.setItem('theme', this.currentTheme);
     }
   }
 
