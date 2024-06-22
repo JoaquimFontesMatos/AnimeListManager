@@ -13,6 +13,9 @@ export class FilterService {
     page: number,
     pageSize: number
   ): UserManga[] {
+    if (page < 1 || pageSize < 1) {
+      throw new Error("Invalid pagination parameters");
+    }
     console.log('Filter params: page:' + page + ', pageSize:' + pageSize);
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
