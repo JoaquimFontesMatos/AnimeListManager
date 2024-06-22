@@ -3,13 +3,12 @@
   --transition-duration: 0.25s;
 
   /* colors */
-  --clr-white: hsl(220, 37%, 100%);
-  --clr-surface: hsl(220, 37%, 97%);
   --clr-text: #bbc8de;
 
   --primary-color: #181818;
   --secondary-color: rgba(11, 44, 67, 0.404);
   --accent-color: rgba(44, 206, 255, 0.404);
+  --error-color: red;
 
   --invert: invert(1);
 

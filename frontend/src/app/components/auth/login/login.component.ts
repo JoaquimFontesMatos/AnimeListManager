@@ -36,9 +36,10 @@ export class LoginComponent implements OnInit {
   ]);
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.min(8),
+    Validators.minLength(8),
   ]);
   loading: boolean = false;
+  error?: string;
 
   images: string[] = [
     '/assets/login.jpeg',
@@ -74,11 +75,10 @@ export class LoginComponent implements OnInit {
             if (user?.token) {
               localStorage.setItem('currentUser', JSON.stringify(user));
               this.router.navigate(['/home/']);
-            } else {
-              alert('Login Error!');
             }
           },
           (error) => {
+            this.error = error.error.message;
             this.loading = false;
             console.log(error);
           }

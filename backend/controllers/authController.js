@@ -10,7 +10,7 @@ authController.login = async function (req, res) {
     const user = await User.findOne({ email: { $eq: req.body.email } });
 
     if (!user) {
-      return res.status(404).send("No user found.");
+      return res.status(404).send({ message: "User not Found!" });
     }
 
     const passwordIsValid = bcrypt.compareSync(
@@ -18,7 +18,11 @@ authController.login = async function (req, res) {
       user.password
     );
     if (!passwordIsValid) {
-      return res.status(404).send({ auth: false, token: null });
+      return res.status(404).send({
+        auth: false,
+        token: null,
+        message: "Invalid Password or Email!",
+      });
     }
 
     const token = jwt.sign({ id: user._id }, config.secret, {
@@ -28,7 +32,7 @@ authController.login = async function (req, res) {
     res.status(200).send({ auth: true, token: token });
   } catch (error) {
     console.error("Error:", error);
-    res.status(500).send("Internal server error");
+    res.status(500).json({ message: "Internal server error!" });
   }
 };
 
@@ -42,12 +46,11 @@ authController.register = async function (req, res) {
     const user = new User(req.body);
 
     user.password = hashedPassword;
-
-    await user.save();
-
-    res.status(200).json(user);
+    var savedUser = await user.save();
+    console.log(savedUser);
+    res.status(201).json(savedUser);
   } catch (err) {
-    if (err.name === "MongoError" && err.code === 11000) {
+    if (err.code === 11000) {
       var error;
 
       if (Object.keys(err.keyPattern)[0] === "username") {
@@ -58,9 +61,10 @@ authController.register = async function (req, res) {
 
       console.log(error);
       res.status(409).json({ message: error });
+    } else {
+      console.error("Error:", err);
+      res.status(500).json({ error: "Internal server error" });
     }
-    console.error("Error:", err);
-    res.status(500).json({ error: "Internal server error" });
   }
 };
 
