@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
         this.authService.login(email, password).subscribe(
           (user: any) => {
             this.loading = false;
-            if (user && user.token) {
+            if (user?.token) {
               localStorage.setItem('currentUser', JSON.stringify(user));
               this.router.navigate(['/home/']);
             } else {
