@@ -12,50 +12,36 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { BackgroundComponent } from "../../extras/background/background.component";
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    CommonModule,
-    MatProgressBarModule,
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  encapsulation: ViewEncapsulation.None, // Disable view encapsulation
+    selector: 'app-login',
+    standalone: true,
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.css',
+    encapsulation: ViewEncapsulation.None,
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        CommonModule,
+        MatProgressBarModule,
+        BackgroundComponent
+    ]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
   passwordFormControl = new FormControl('', [
     Validators.required,
-    Validators.min(8),
+    Validators.minLength(8),
   ]);
   loading: boolean = false;
-
-  images: string[] = [
-    '/assets/login.jpeg',
-    '/assets/login2.jpg',
-    '/assets/login3.jpg',
-  ];
-
-  currentImageIndex = 0;
-
-  ngOnInit() {
-    setInterval(() => {
-      this.currentImageIndex++;
-      if (this.currentImageIndex >= this.images.length) {
-        this.currentImageIndex = 0;
-      }
-    }, 60 * 1000); // Change image every minute
-  }
+  error?: string;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -74,11 +60,10 @@ export class LoginComponent implements OnInit {
             if (user?.token) {
               localStorage.setItem('currentUser', JSON.stringify(user));
               this.router.navigate(['/home/']);
-            } else {
-              alert('Login Error!');
             }
           },
           (error) => {
+            this.error = error.error.message;
             this.loading = false;
             console.log(error);
           }

@@ -76,57 +76,42 @@ mangaController.getAllMangas = async (req, res) => {
   try {
     // Perform the aggregation to look up mangas by `mal_id`
     const foundMangas = await User.aggregate([
+      { $match: { _id: { $eq: req.user._id } } },
       {
         $unwind: "$favoriteManga",
       },
       {
-        $lookup:
-          /**
-           * from: The target collection.
-           * localField: The local join field.
-           * foreignField: The target join field.
-           * as: The name for the results.
-           * pipeline: Optional pipeline to run on the foreign collection.
-           * let: Optional variables to use in the pipeline field stages.
-           */
-          {
-            from: "mangas",
-            localField: "favoriteManga.mal_id",
-            foreignField: "mal_id",
-            as: "mangas",
-          },
+        $lookup: {
+          from: "mangas",
+          localField: "favoriteManga.mal_id",
+          foreignField: "mal_id",
+          as: "mangas",
+        },
       },
       {
-        $unwind: "$mangas", // Unwind the mangas array
+        $unwind: "$mangas",
       },
       {
-        $project:
-          /**
-           * specifications: The fields to
-           *   include or exclude.
-           */
-          {
-            _id: 0,
-            userMangas: {
-              manga: "$mangas",
-              favoriteManga: "$favoriteManga",
-            },
+        $project: {
+          _id: 0,
+          userMangas: {
+            manga: "$mangas",
+            favoriteManga: "$favoriteManga",
           },
+        },
       },
       {
         $group: {
           _id: null,
-          // Group all documents together
           userMangas: {
             $push: "$userMangas",
-          }, // Accumulate manga documents into an array
+          },
         },
       },
       {
         $project: {
           _id: 0,
-          // Exclude the _id field
-          userMangas: 1, // Include the mangas array
+          userMangas: 1,
         },
       },
     ]).exec();
