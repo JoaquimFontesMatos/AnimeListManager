@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { LoginComponent } from '../auth/login/login.component';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.css',
+  styleUrls: ['./landing-page.component.css'],
+  imports: [LoginComponent],
 })
-export class LandingPageComponent {
-  constructor(private router: Router) {
-    this.router.navigate(['/auth/login/']);
-  }
-}
+export class LandingPageComponent {}

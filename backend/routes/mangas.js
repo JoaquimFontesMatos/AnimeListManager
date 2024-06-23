@@ -19,6 +19,13 @@ router.get(
  */
 router.post("/mangas", mangaController.createManga);
 
+router.put(
+  "/add-favorite-manga",
+  authController.verifyToken,
+  userController.getUserById,
+  userController.addFavoriteManga
+);
+
 /**
  * Get the Anime with the given Id from the Database
  */

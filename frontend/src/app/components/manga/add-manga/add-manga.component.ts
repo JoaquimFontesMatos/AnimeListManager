@@ -45,11 +45,9 @@ export class AddMangaComponent {
           // Update the favoriteManga object
           this.favoritedManga.mal_id = mal_id;
 
-          this.userService
-            .addFavoriteManga(this.favoritedManga)
-            .subscribe((updatedUser: User) => {
-              console.log('Update Success:', updatedUser);
-            });
+          await firstValueFrom(
+            this.mangaService.addFavoriteManga(this.favoritedManga)
+          );
         }
       } catch (err) {
         console.error('Error saving manga or updating user:', err);
@@ -64,9 +62,9 @@ export class AddMangaComponent {
       }
 
       // Check if manga with mal_id is already saved
-      const isSaved = await this.mangaService
-        .isMangaMalIdSaved(this.manga.mal_id)
-        .toPromise();
+      const isSaved = await firstValueFrom(
+        this.mangaService.isMangaMalIdSaved(this.manga.mal_id)
+      );
 
       if (isSaved) {
         console.log('Manga with mal_id already saved:', this.manga.mal_id);

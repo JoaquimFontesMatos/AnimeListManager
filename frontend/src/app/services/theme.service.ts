@@ -11,8 +11,9 @@ export class ThemeService {
     light: {
       '--primary-color': 'hsl(220, 37%, 97%)',
       '--secondary-color': 'hsl(0, 0%, 91%)',
-      '--accent-color': 'black',
-      '--clr-text': 'black',
+      '--accent-color': '#000000',
+      '--clr-text': '#000000',
+      '--clr-text-disabled': '#bbc8de7f',
       '--invert': 'invert(0)',
     },
     dark: {
@@ -20,6 +21,7 @@ export class ThemeService {
       '--secondary-color': 'rgba(11, 44, 67, 0.404)',
       '--accent-color': 'rgba(44, 170, 255, 0.404)',
       '--clr-text': '#bbc8de',
+      '--clr-text-disabled': '#bbc8de7f',
       '--invert': 'invert(1)',
     },
   };

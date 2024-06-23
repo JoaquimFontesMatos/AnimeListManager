@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import {
   FormControl,
   Validators,
@@ -12,24 +12,24 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { BackgroundComponent } from "../../extras/background/background.component";
+import { BackgroundComponent } from '../../extras/background/background.component';
 
 @Component({
-    selector: 'app-login',
-    standalone: true,
-    templateUrl: './login.component.html',
-    styleUrl: './login.component.css',
-    encapsulation: ViewEncapsulation.None,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        CommonModule,
-        MatProgressBarModule,
-        BackgroundComponent
-    ]
+  selector: 'app-login',
+  standalone: true,
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css',
+  encapsulation: ViewEncapsulation.None,
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    CommonModule,
+    MatProgressBarModule,
+    BackgroundComponent,
+  ],
 })
 export class LoginComponent {
   emailFormControl = new FormControl('', [

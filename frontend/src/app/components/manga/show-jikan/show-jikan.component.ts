@@ -26,6 +26,10 @@ export class ShowJikanComponent {
 
   constructor(private jikanManga: JikanMangaService) {}
 
+  hide(): void {
+    this.mangaTitle = undefined;
+  }
+
   search(): void {
     this.jikanManga
       .getMangas(this.mangaTitle || '', this.sfw)

@@ -31,10 +31,6 @@ export class UserService {
     return this.http.put<User>(endpoint + 'user', user);
   }
 
-  addFavoriteManga(manga: FavoritedManga): Observable<User> {
-    return this.http.put<User>(endpoint + 'add-favorite-manga', manga);
-  }
-
   deleteUser(): Observable<User> {
     return this.http.delete<User>(endpoint + 'user');
   }

@@ -1,6 +1,6 @@
 .background-image {
   filter: var(--invert);
-height: 100svh;
+  height: 100svh;
   transition: filter var(--transition-duration) linear,
     background-image var(--transition-duration) ease;
 }
