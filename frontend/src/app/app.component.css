@@ -1,6 +1,6 @@
 button {
   background: var(--primary-color);
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   background-color: var(--primary-color);
@@ -9,6 +9,7 @@ button {
   margin: 10px;
   border: 1px solid var(--accent-color);
   border-radius: 50%;
+  z-index: 1000;
 
   svg {
     background-color: transparent;

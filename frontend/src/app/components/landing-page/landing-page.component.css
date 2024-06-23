@@ -1,0 +1,68 @@
+.article-header {
+  background-color: black;
+  display: grid;
+  place-items: center;
+  position: relative;
+  height: 100svh;
+  overflow-x: clip;
+  padding-block: 7rem;
+  padding-block-end: 3rem;
+  z-index: 1;
+  text-align: center;
+}
+
+.header-content {
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  padding-block: 1rem;
+  border-radius: 1rem;
+  animation: fade-out linear;
+  animation-timeline: view();
+  animation-range: exit -200px;
+}
+
+.arrow {
+  color: white;
+  cursor: pointer;
+}
+
+.arrow svg {
+  opacity: 50%;
+}
+
+.header-image {
+  grid-column: 1/-1;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  object-fit: cover;
+  z-index: -1;
+
+  animation: header-image-animation linear forwards;
+  animation-timeline: view();
+  animation-range: exit -200px;
+  transform-origin: bottom;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes header-image-animation {
+  25% {
+    opacity: 1;
+  }
+  85%,
+  100% {
+    opacity: 0;
+    scale: 3;
+  }
+}
