@@ -4,6 +4,7 @@
 
   /* colors */
   --clr-text: #bbc8de;
+  --clr-text-disabled: #bbc8de7f;
 
   --primary-color: #181818;
   --secondary-color: rgba(11, 44, 67, 0.404);

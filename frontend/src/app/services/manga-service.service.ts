@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {
   Observable,
-  Subject,
   BehaviorSubject,
   tap,
   filter,
@@ -11,6 +10,7 @@ import {
 } from 'rxjs';
 import { Manga, UserManga } from '../models/Manga';
 import { environment } from '../../environments/environment';
+import { FavoritedManga, User } from '../models/User';
 
 const endpoint = environment.backendUrl + 'm/';
 const httpOptions = {
@@ -23,7 +23,9 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class MangaServiceService {
-  private addMangaSubject = new BehaviorSubject<Manga>(new Manga()); // Initialize with default Manga object
+  private addMangaSubject = new BehaviorSubject<FavoritedManga>(
+    new FavoritedManga()
+  );
 
   constructor(private http: HttpClient) {}
 
@@ -36,22 +38,30 @@ export class MangaServiceService {
   }
 
   saveManga(manga: Manga): Observable<Manga> {
+    return this.http.post<Manga>(
+      endpoint + 'mangas',
+      JSON.stringify(manga),
+      httpOptions
+    );
+  }
+
+  addFavoriteManga(manga: FavoritedManga): Observable<User> {
     return this.http
-      .post<Manga>(endpoint + 'mangas', JSON.stringify(manga), httpOptions)
+      .put<User>(endpoint + 'add-favorite-manga', manga, httpOptions)
       .pipe(
-        tap((newManga: Manga) => {
-          this.addMangaSubject.next(newManga); // Emit new manga
+        tap(() => {
+          this.addMangaSubject.next(manga);
         }),
         catchError((error) => {
-          console.error('Error saving manga:', error);
+          console.error('Error adding favorite manga:', error);
           return throwError(error);
         })
       );
   }
 
-  getMangaAddedObservable(): Observable<Manga> {
-    return this.addMangaSubject.asObservable().pipe(
-      filter((manga) => manga !== null) // Filter out null values if needed
-    );
+  getMangaAddedObservable(): Observable<FavoritedManga> {
+    return this.addMangaSubject
+      .asObservable()
+      .pipe(filter((manga) => manga !== null));
   }
 }

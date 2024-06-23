@@ -1,0 +1,30 @@
+.table-wrapper {
+  border: 2px solid var(--accent-color);
+  border-radius: 1rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+td,
+th {
+  text-align: center;
+  background-color: var(--secondary-color);
+  color: var(--clr-text);
+}
+
+.title {
+  text-align: left;
+}
+
+.mat-mdc-paginator {
+  --mat-paginator-container-text-color: var(--clr-text);
+  --mat-select-enabled-trigger-text-color: var(--clr-text);
+  --mat-select-disabled-trigger-text-color: var(--clr-text-disabled);
+  --mat-select-enabled-arrow-color: var(--clr-text);
+  --mat-paginator-disabled-icon-color: var(--clr-text-disabled);
+  --mat-paginator-enabled-icon-color: var(--clr-text);
+  --mat-option-label-text-color: var(--clr-text);
+  --mat-option-label-text-color: var(--clr-text);
+
+  background-color: var(--secondary-color);
+}

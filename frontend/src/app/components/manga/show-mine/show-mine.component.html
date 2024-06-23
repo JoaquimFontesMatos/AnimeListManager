@@ -1,33 +1,35 @@
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Manga Status</th>
-            <th scope="col">Total Chapters</th>
-            <th scope="col">Genres</th>
-            <th scope="col">Watch Status</th>
-            <th scope="col">Current Chapter</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let mangaUser of mangasUser; let i = index; trackBy: trackByMalId">
-            <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
-            <td>
-                <img [src]="mangaUser.manga.image" class="me-2" style="width: 50px" />
-                {{ mangaUser.manga.title }}
-            </td>
-            <td>{{ mangaUser.manga.mangaStatus }}</td>
-            <td>{{ mangaUser.manga.totalChapters | number }}</td>
-            <td>
-                <div *ngFor="let genre of mangaUser.manga.genres">
-                    {{ genre }}<br />
-                </div>
-            </td>
-            <td>{{ mangaUser.favoriteManga.watchStatus }}</td>
-            <td>{{ mangaUser.favoriteManga.currentChapter | number }}</td>
-        </tr>
-    </tbody>
-</table>
-<mat-paginator [length]="collectionSize" [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [pageIndex]="page-1"
-    (page)="pageChanged($event)"></mat-paginator>
+<div class="table-wrapper">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="title">Title</th>
+                <th scope="col">Manga Status</th>
+                <th scope="col">Total Chapters</th>
+                <th scope="col">Genres</th>
+                <th scope="col">Watch Status</th>
+                <th scope="col">Current Chapter</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let mangaUser of mangasUser; let i = index; trackBy: trackByMalId">
+                <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
+                <td class="title">
+                    <img [src]="mangaUser.manga.image" class="me-2" style="width: 50px" />
+                    {{ mangaUser.manga.title }}
+                </td>
+                <td>{{ mangaUser.manga.mangaStatus }}</td>
+                <td>{{ mangaUser.manga.totalChapters | number }}</td>
+                <td>
+                    <div *ngFor="let genre of mangaUser.manga.genres">
+                        {{ genre }}<br />
+                    </div>
+                </td>
+                <td>{{ mangaUser.favoriteManga.watchStatus }}</td>
+                <td>{{ mangaUser.favoriteManga.currentChapter | number }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <mat-paginator [length]="collectionSize" [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize"
+        [pageIndex]="page-1" (page)="pageChanged($event)"></mat-paginator>
+</div>
