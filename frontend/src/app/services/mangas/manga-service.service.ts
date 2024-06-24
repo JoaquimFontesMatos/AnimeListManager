@@ -8,9 +8,9 @@ import {
   catchError,
   throwError,
 } from 'rxjs';
-import { Manga, UserManga } from '../models/Manga';
-import { environment } from '../../environments/environment';
-import { FavoritedManga, User } from '../models/User';
+import { Manga, UserManga } from '../../models/Manga';
+import { environment } from '../../../environments/environment';
+import { FavoritedManga, User } from '../../models/User';
 
 const endpoint = environment.backendUrl + 'm/';
 const httpOptions = {
@@ -63,5 +63,9 @@ export class MangaServiceService {
     return this.addMangaSubject
       .asObservable()
       .pipe(filter((manga) => manga !== null));
+  }
+
+  syncMangas(mangas: UserManga[]): Observable<any> {
+    return this.http.post(`${endpoint}/sync`, { mangas });
   }
 }

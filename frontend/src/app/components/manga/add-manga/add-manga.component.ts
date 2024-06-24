@@ -1,12 +1,13 @@
 import { Component, Input, TemplateRef, inject } from '@angular/core';
-import { Manga } from '../../../models/Manga';
-import { MangaServiceService } from '../../../services/manga-service.service';
+import { Manga, UserManga } from '../../../models/Manga';
+import { MangaServiceService } from '../../../services/mangas/manga-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User, FavoritedManga } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { firstValueFrom } from 'rxjs';
+import { MangaStateService } from '../../../services/mangas/manga-state.service';
 
 @Component({
   selector: 'app-add-manga',
@@ -24,7 +25,8 @@ export class AddMangaComponent {
 
   constructor(
     private mangaService: MangaServiceService,
-    private userService: UserService
+    private userService: UserService,
+    private mangaStateService: MangaStateService
   ) {
     this.manga = new Manga();
     this.favoritedManga = new FavoritedManga();
@@ -48,6 +50,9 @@ export class AddMangaComponent {
           await firstValueFrom(
             this.mangaService.addFavoriteManga(this.favoritedManga)
           );
+          let userManga = new UserManga(this.manga, this.favoritedManga);
+
+          this.mangaStateService.addManga(userManga);
         }
       } catch (err) {
         console.error('Error saving manga or updating user:', err);
