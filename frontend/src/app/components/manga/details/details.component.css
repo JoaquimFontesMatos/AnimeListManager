@@ -1,0 +1,67 @@
+.manga-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+  border: 1px solid var(--accent-color);
+  transition: color var(--transition-duration) linear,
+    background-color var(--transition-duration) linear,
+    --secondary-color var(--transition-duration) linear;
+}
+
+.chips-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  align-content: center;
+}
+
+p,
+.form-label {
+  color: var(--clr-text);
+}
+
+.title {
+  font-family: var(--ff-accent);
+  font-size: var(--fs-700);
+  padding: 2rem;
+  color: var(--clr-text);
+}
+
+.form-control {
+  color: var(--clr-text);
+  background-color: var(--secondary-color);
+}
+
+.error {
+  color: red;
+}
+
+.button-details {
+  background-color: var(--secondary-color) !important;
+  border: 1px solid var(--accent-color) !important;
+  color: var(--clr-text) !important;
+  border-radius: 3px;
+}
+
+.button-details:hover,
+.button-details:active {
+  background-color: var(--primary-color) !important;
+  border: 1px solid var(--accent-color) !important;
+  color: var(--clr-text) !important;
+}
+
+.button-details:disabled {
+  background-color: var(--secondary-color) !important;
+  border: 1px solid var(--accent-color) !important;
+  color: var(--clr-text) !important;
+  opacity: 30% !important;
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 100px;
+}

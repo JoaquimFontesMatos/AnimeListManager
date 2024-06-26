@@ -11,13 +11,12 @@ userController.updateUser = async (req, res) => {
     return res.status(400).send("No ID or user updates given");
   }
 
-  userUpdates.password = await bcrypt.hash(userUpdates.password, 12);
   userUpdates.updatedAt = Date.now();
 
   try {
     var updatedUser = await User.findByIdAndUpdate(
       { $eq: id },
-      { $eq: userUpdates },
+      userUpdates ,
       {
         new: true,
         runValidators: true,
@@ -26,6 +25,7 @@ userController.updateUser = async (req, res) => {
     if (!updatedUser) {
       return res.status(404).send("User not found");
     }
+
     res.status(200).json(updatedUser);
   } catch (err) {
     if (err.name === "MongoError" && err.code === 11000) {
