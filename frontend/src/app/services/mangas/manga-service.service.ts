@@ -64,8 +64,4 @@ export class MangaServiceService {
       .asObservable()
       .pipe(filter((manga) => manga !== null));
   }
-
-  syncMangas(mangas: UserManga[]): Observable<any> {
-    return this.http.post(`${endpoint}/sync`, { mangas });
-  }
 }

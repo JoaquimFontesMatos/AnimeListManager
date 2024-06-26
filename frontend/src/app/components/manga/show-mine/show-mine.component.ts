@@ -6,13 +6,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FilterService } from '../../../services/filter.service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MangaStateService } from '../../../services/mangas/manga-state.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailsComponent } from '../details/details.component';
 
 @Component({
   selector: 'app-show-mine',
   standalone: true,
   templateUrl: './show-mine.component.html',
   styleUrls: ['./show-mine.component.css'],
-  imports: [CommonModule, MatPaginatorModule, FormsModule],
+  imports: [CommonModule, MatPaginatorModule, FormsModule, MatButtonModule],
 })
 export class ShowMineComponent implements OnInit {
   page: number = 1;
@@ -27,7 +30,8 @@ export class ShowMineComponent implements OnInit {
     private mangaStateService: MangaStateService,
     private filterService: FilterService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) {}
 
   pageChanged(event: PageEvent) {
@@ -48,13 +52,17 @@ export class ShowMineComponent implements OnInit {
         this.pageSize = newPageSize;
       }
 
-      this.mangaStateService.loadMangas();
-
       this.mangaStateService.mangas$.subscribe((mangas) => {
         this._allMangas = mangas;
         this.collectionSize = mangas.length;
         this.filter();
       });
+    });
+  }
+
+  openDialog(userManga: UserManga, index: number) {
+    this.dialog.open(DetailsComponent, {
+      data: { userManga, index },
     });
   }
 

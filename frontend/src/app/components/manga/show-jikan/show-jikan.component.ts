@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Manga } from '../../../models/Manga';
+import { Manga, UserManga } from '../../../models/Manga';
 import { JikanMangaService } from '../../../services/jikan/jikan-manga.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { AddMangaComponent } from '../add-manga/add-manga.component';
-import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-show-jikan',
