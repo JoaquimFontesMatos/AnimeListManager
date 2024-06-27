@@ -499,7 +499,7 @@
         "username": { "type": "string" },
         "email": { "type": "string" },
         "password": { "type": "string" },
-        "favouriteManga": {
+        "favoriteManga": {
           "type": "array",
           "items": {
             "mal_id": { "type": "number" },

@@ -1,59 +1,58 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Adicionar Manga</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <form #form="ngForm" novalidate>
-        <div class="modal-body">
-            <div class="mb-3">
-                <div class="col-md-6">
-                    <label class="form-label" for="currentChapter">Current Chapter</label>
-                    <input class="form-control" type="number" [(ngModel)]="favoritedManga.currentChapter"
-                        #currentChapter="ngModel" name="currentChapter" id="currentChapter" required
-                        max="{{manga.totalChapters || 0}}" min="0">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Adicionar Manga</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <form #form="ngForm" novalidate>
+    <div class="modal-body">
+      <div class="mb-3">
+        <div class="col-md-6">
+          <label class="form-label" for="currentChapter">Current Chapter</label>
+          <input class="form-control" type="number" [(ngModel)]="favoritedManga.currentChapter"
+            #currentChapter="ngModel" name="currentChapter" id="currentChapter" required
+            max="{{manga.totalChapters || 0}}" min="0">
 
-                    <div *ngIf="currentChapter.invalid && (currentChapter.dirty || currentChapter.touched)">
-                        <div class="alert alert-danger"
-                            *ngIf="currentChapter.errors && currentChapter.errors['required']">
-                            Field is required!
-                        </div>
-                        <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['min']">
-                            Invalid Number!
-                        </div>
-                        <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['max']">
-                            Number exceeds the total of chapters!
-                        </div>
-                    </div>
-                    <div *ngIf="currentChapter.valid" class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label" for="myStatus">Watch Status</label>
-                    <select required class="form-control" [(ngModel)]="favoritedManga.watchStatus" #myStatus="ngModel"
-                        name="myStatus" id="myStatus">
-                        <option selected value="To Watch">To Watch</option>
-                        <option value="Watching">Watching</option>
-                        <option value="Dropped">Dropped</option>
-                        <option value="Seen">Seen</option>
-                    </select>
-
-                    <div *ngIf="myStatus.invalid && (myStatus.dirty || myStatus.touched)">
-                        <div class="invalid-feedback" *ngIf="myStatus.errors && myStatus.errors['required']">
-                            Field is required!
-                        </div>
-                    </div>
-                    <div *ngIf="myStatus.valid" class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
+          <div *ngIf="currentChapter.invalid && (currentChapter.dirty || currentChapter.touched)">
+            <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['required']">
+              Field is required!
             </div>
+            <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['min']">
+              Invalid Number!
+            </div>
+            <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['max']">
+              Number exceeds the total of chapters!
+            </div>
+          </div>
+          <div *ngIf="currentChapter.valid" class="valid-feedback">
+            Looks good!
+          </div>
         </div>
-        <div class="modal-footer">
-            <button [disabled]="form.invalid" type="button" class="btn btn-outline-secondary"
-                (click)="modal.close('Save click');save()">Save</button>
+        <div class="col-md-6">
+          <label class="form-label" for="myStatus">Watch Status</label>
+          <select required class="form-control" [(ngModel)]="favoritedManga.watchStatus" #myStatus="ngModel"
+            name="myStatus" id="myStatus">
+            <option selected value="To Watch">To Watch</option>
+            <option value="Watching">Watching</option>
+            <option value="Dropped">Dropped</option>
+            <option value="Seen">Seen</option>
+          </select>
+
+          <div *ngIf="myStatus.invalid && (myStatus.dirty || myStatus.touched)">
+            <div class="invalid-feedback" *ngIf="myStatus.errors && myStatus.errors['required']">
+              Field is required!
+            </div>
+          </div>
+          <div *ngIf="myStatus.valid" class="valid-feedback">
+            Looks good!
+          </div>
         </div>
-    </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button [disabled]="form.invalid" type="button" class="btn btn-outline-secondary"
+        (click)="modal.close('Save click');save()">Save</button>
+    </div>
+  </form>
 </ng-template>
 
 <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add to my List</button>

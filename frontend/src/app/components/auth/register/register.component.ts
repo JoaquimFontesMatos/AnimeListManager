@@ -13,23 +13,23 @@ import { User } from '../../../models/User';
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CommonModule } from '@angular/common';
-import { BackgroundComponent } from "../../extras/background/background.component";
+import { BackgroundComponent } from '../../extras/background/background.component';
 
 @Component({
-    selector: 'app-register',
-    standalone: true,
-    templateUrl: './register.component.html',
-    styleUrl: './register.component.css',
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatButtonModule,
-        MatProgressBarModule,
-        CommonModule,
-        BackgroundComponent
-    ]
+  selector: 'app-register',
+  standalone: true,
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    CommonModule,
+    BackgroundComponent,
+  ],
 })
 export class RegisterComponent {
   usernameFormControl = new FormControl('', [Validators.required]);
@@ -60,7 +60,7 @@ export class RegisterComponent {
 
     this.authService.register(user).subscribe(
       () => {
-        alert('User Sucessfuly Added');
+        alert('User Successfully Added');
         this.router.navigate(['/auth/login/']);
       },
       (err) => {

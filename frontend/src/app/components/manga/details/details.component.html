@@ -1,93 +1,87 @@
 <div class="manga-details">
-    <h2 class="title" mat-dialog-title>Details Manga: {{userManga.manga.title}}</h2>
-    <mat-dialog-content>
-        <div class="container">
-            <p>Date Added: {{userManga.manga.dateAdded}}</p>
-            <img [src]="userManga.manga.image" class="me-2" style="width: 50px" />
-            <p>Title: {{userManga.manga.title}}</p>
-            <p>MyAnimeListID: {{userManga.manga.mal_id}}</p>
-            <p>Manga Status: {{userManga.manga.mangaStatus}}</p>
-            <p>Score: {{userManga.manga.score}}</p>
-            <p>Synopsis: {{userManga.manga.synopsis}}</p>
-            <p>Total Chapters: {{userManga.manga.totalChapters}}</p>
-            <p>Genres:
-                <mat-chip-set class="chips-container" aria-label="Genre selection">
-                    <mat-chip class="genre" *ngFor="let genre of genres"
-                        [ngStyle]="{'background-color': genreColors[genre]}">
-                        {{genre}}
-                    </mat-chip>
-                </mat-chip-set>
-            </p>
-            <p>Themes:
-                <mat-chip-set class="chips-container" aria-label="Theme selection">
-                    <mat-chip class="theme" *ngFor="let theme of themes"
-                        [ngStyle]="{'background-color': themeColors[theme]}">
-                        {{theme}}
-                    </mat-chip>
-                </mat-chip-set>
-            </p>
-            <p>Published: {{userManga.manga.published?.string}}</p>
-            <p>Type: {{userManga.manga.type}}</p>
-            <p>Date Edited: {{userManga.manga.dateEdited}}</p>
+  <h2 class="title" mat-dialog-title>Details Manga: {{userManga.manga.title}}</h2>
+  <mat-dialog-content>
+    <div class="container">
+      <p>Date Added: {{userManga.manga.dateAdded}}</p>
+      <img [src]="userManga.manga.image" class="me-2" style="width: 50px" />
+      <p>Title: {{userManga.manga.title}}</p>
+      <p>MyAnimeListID: {{userManga.manga.mal_id}}</p>
+      <p>Manga Status: {{userManga.manga.mangaStatus}}</p>
+      <p>Score: {{userManga.manga.score}}</p>
+      <p>Synopsis: {{userManga.manga.synopsis}}</p>
+      <p>Total Chapters: {{userManga.manga.totalChapters}}</p>
+      <p>Genres:
+        <mat-chip-set class="chips-container" aria-label="Genre selection">
+          <mat-chip class="genre" *ngFor="let genre of genres" [ngStyle]="{'background-color': genreColors[genre]}">
+            {{genre}}
+          </mat-chip>
+        </mat-chip-set>
+      </p>
+      <p>Themes:
+        <mat-chip-set class="chips-container" aria-label="Theme selection">
+          <mat-chip class="theme" *ngFor="let theme of themes" [ngStyle]="{'background-color': themeColors[theme]}">
+            {{theme}}
+          </mat-chip>
+        </mat-chip-set>
+      </p>
+      <p>Published: {{userManga.manga.published?.string}}</p>
+      <p>Type: {{userManga.manga.type}}</p>
+      <p>Date Edited: {{userManga.manga.dateEdited}}</p>
 
-            <form #form="ngForm" novalidate>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <div class="col-md-6">
-                            <label class="form-label" for="currentChapter">Current Chapter</label>
-                            <input class="form-control" type="number"
-                                [(ngModel)]="userManga.favoriteManga.currentChapter" #currentChapter="ngModel"
-                                name="currentChapter" id="currentChapter" required
-                                max="{{userManga.manga.totalChapters || 0}}" min="0">
+      <form #form="ngForm" novalidate>
+        <div class="modal-body">
+          <div class="mb-3">
+            <div class="col-md-6">
+              <label class="form-label" for="currentChapter">Current Chapter</label>
+              <input class="form-control" type="number" [(ngModel)]="userManga.favoriteManga.currentChapter"
+                #currentChapter="ngModel" name="currentChapter" id="currentChapter" required
+                max="{{userManga.manga.totalChapters || 0}}" min="0">
 
-                            <div *ngIf="currentChapter.invalid && (currentChapter.dirty || currentChapter.touched)">
-                                <div class="alert alert-danger"
-                                    *ngIf="currentChapter.errors && currentChapter.errors['required']">
-                                    Field is required!
-                                </div>
-                                <div class="alert alert-danger"
-                                    *ngIf="currentChapter.errors && currentChapter.errors['min']">
-                                    Invalid Number!
-                                </div>
-                                <div class="alert alert-danger"
-                                    *ngIf="currentChapter.errors && currentChapter.errors['max']">
-                                    Number exceeds the total of chapters!
-                                </div>
-                            </div>
-                            <div *ngIf="currentChapter.valid" class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label" for="myStatus">Watch Status</label>
-                            <select required class="form-control" [(ngModel)]="userManga.favoriteManga.watchStatus"
-                                #myStatus="ngModel" name="myStatus" id="myStatus">
-                                <option selected value="To Watch">To Watch</option>
-                                <option value="Watching">Watching</option>
-                                <option value="Dropped">Dropped</option>
-                                <option value="Seen">Seen</option>
-                            </select>
-
-                            <div *ngIf="myStatus.invalid && (myStatus.dirty || myStatus.touched)">
-                                <div class="invalid-feedback" *ngIf="myStatus.errors && myStatus.errors['required']">
-                                    Field is required!
-                                </div>
-                            </div>
-                            <div *ngIf="myStatus.valid" class="valid-feedback">
-                                Looks good!
-                            </div>
-                        </div>
-                    </div>
+              <div *ngIf="currentChapter.invalid && (currentChapter.dirty || currentChapter.touched)">
+                <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['required']">
+                  Field is required!
                 </div>
-            </form>
-        </div>
-    </mat-dialog-content>
+                <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['min']">
+                  Invalid Number!
+                </div>
+                <div class="alert alert-danger" *ngIf="currentChapter.errors && currentChapter.errors['max']">
+                  Number exceeds the total of chapters!
+                </div>
+              </div>
+              <div *ngIf="currentChapter.valid" class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="myStatus">Watch Status</label>
+              <select required class="form-control" [(ngModel)]="userManga.favoriteManga.watchStatus"
+                #myStatus="ngModel" name="myStatus" id="myStatus">
+                <option selected value="To Watch">To Watch</option>
+                <option value="Watching">Watching</option>
+                <option value="Dropped">Dropped</option>
+                <option value="Seen">Seen</option>
+              </select>
 
-    <mat-dialog-actions align="end">
-        <div class="button-wrapper">
-            <button class="button-details" [mat-dialog-close]="true" [disabled]="form.invalid" (click)="update()"
-                cdkFocusInitial>Update</button>
-            <button class="button-details" [mat-dialog-close]="true" (click)="delete()" cdkFocusInitial>Delete</button>
+              <div *ngIf="myStatus.invalid && (myStatus.dirty || myStatus.touched)">
+                <div class="invalid-feedback" *ngIf="myStatus.errors && myStatus.errors['required']">
+                  Field is required!
+                </div>
+              </div>
+              <div *ngIf="myStatus.valid" class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+          </div>
         </div>
-    </mat-dialog-actions>
+      </form>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <div class="button-wrapper">
+      <button class="button-details" [mat-dialog-close]="true" [disabled]="form.invalid" (click)="update()"
+        cdkFocusInitial>Update</button>
+      <button class="button-details" [mat-dialog-close]="true" (click)="delete()" cdkFocusInitial>Delete</button>
+    </div>
+  </mat-dialog-actions>
 </div>

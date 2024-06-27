@@ -8,10 +8,9 @@ describe('ShowJikanComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShowJikanComponent]
-    })
-    .compileComponents();
-    
+      imports: [ShowJikanComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ShowJikanComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

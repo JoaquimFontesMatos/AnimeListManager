@@ -1,56 +1,56 @@
 <div class="search-bar">
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" [(ngModel)]="sfw" id="sfw" placeholder="sfw"
-            (ngModelChange)="search()">
-        <label class=" form-check-label" for="sfw">SFW?</label>
-    </div>
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" [(ngModel)]="sfw" id="sfw" placeholder="sfw"
+      (ngModelChange)="search()">
+    <label class=" form-check-label" for="sfw">SFW?</label>
+  </div>
 
-    <label class="form-label" for="mangaTitle">What's the manga title?</label>
-    <input class="form-control" type="text" [(ngModel)]="mangaTitle" id="mangaTitle" placeholder="title"
-        (ngModelChange)="search()">
+  <label class="form-label" for="mangaTitle">What's the manga title?</label>
+  <input class="form-control" type="text" [(ngModel)]="mangaTitle" id="mangaTitle" placeholder="title"
+    (ngModelChange)="search()">
 </div>
 
 <table *ngIf="mangaTitle" class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
-            <th scope="col">Chapter</th>
-            <th scope="col">Genres</th>
-            <th scope="col">Btn</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (manga of mangas; track manga.title; let i = $index) {
-        <tr>
-            <th scope="row">{{ i + 1 }}</th>
-            <td>
-                <img [src]="manga.image" class="me-2" style="width: 50px" />
-                {{ manga.title }}
-            </td>
-            <td>{{ manga.mangaStatus }}</td>
-            <td>{{ manga.totalChapters | number }}</td>
-            <td>
-                <div *ngFor="let genre of manga.genres">
-                    {{ genre }}<br>
-                </div>
-            </td>
-            <td><app-add-manga [manga]="manga"></app-add-manga></td>
-        </tr>
-        }
-    </tbody>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Status</th>
+      <th scope="col">Chapter</th>
+      <th scope="col">Genres</th>
+      <th scope="col">Btn</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (manga of mangas; track manga.title; let i = $index) {
+    <tr>
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <img [src]="manga.image" class="me-2" style="width: 50px" />
+        {{ manga.title }}
+      </td>
+      <td>{{ manga.mangaStatus }}</td>
+      <td>{{ manga.totalChapters | number }}</td>
+      <td>
+        <div *ngFor="let genre of manga.genres">
+          {{ genre }}<br>
+        </div>
+      </td>
+      <td><app-add-manga [manga]="manga"></app-add-manga></td>
+    </tr>
+    }
+  </tbody>
 </table>
 <div *ngIf="mangaTitle" class="d-flex justify-content-between p-2">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
-        (pageChange)="refreshMangas()">
-    </ngb-pagination>
+  <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+    (pageChange)="refreshMangas()">
+  </ngb-pagination>
 
-    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshMangas()">
-        <option [ngValue]="2">2 items per page</option>
-        <option [ngValue]="4">4 items per page</option>
-        <option [ngValue]="6">6 items per page</option>
-    </select>
+  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshMangas()">
+    <option [ngValue]="2">2 items per page</option>
+    <option [ngValue]="4">4 items per page</option>
+    <option [ngValue]="6">6 items per page</option>
+  </select>
 
-    <button type="button" class="btn btn-primary" (click)="hide()">^</button>
+  <button type="button" class="btn btn-primary" (click)="hide()">^</button>
 </div>

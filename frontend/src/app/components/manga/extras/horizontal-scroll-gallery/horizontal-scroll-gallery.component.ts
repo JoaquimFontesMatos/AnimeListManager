@@ -1,22 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { UserManga } from '../../../models/Manga';
-import { DetailsComponent } from '../details/details.component';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FilterService } from '../../../services/filter.service';
-import { MangaStateService } from '../../../services/mangas/manga-state.service';
+import { UserManga } from '../../../../models/Manga';
+import { FilterService } from '../../../../services/filter.service';
+import { MangaStateService } from '../../../../services/mangas/manga-state.service';
+import { DetailsComponent } from '../../details/details.component';
 import { CommonModule } from '@angular/common';
-import { HorizontalScrollGaleryComponent } from '../extras/horizontal-scroll-galery/horizontal-scroll-galery.component';
 
 @Component({
-  selector: 'app-manga-galery',
+  selector: 'app-horizontal-scroll-gallery',
   standalone: true,
-  imports: [CommonModule, HorizontalScrollGaleryComponent],
-  templateUrl: './manga-galery.component.html',
-  styleUrl: './manga-galery.component.css',
+  imports: [CommonModule],
+  templateUrl: './horizontal-scroll-gallery.component.html',
+  styleUrl: './horizontal-scroll-gallery.component.css',
 })
-export class MangaGaleryComponent implements OnInit {
-  _allMangas: UserManga[] = [];
+export class HorizontalScrollGalleryComponent implements OnInit {
+  @Input() watchStatus: string = '';
   mangasUser: UserManga[] = [];
+
+  private _allMangas: UserManga[] = [];
 
   constructor(
     private mangaStateService: MangaStateService,
@@ -28,6 +29,8 @@ export class MangaGaleryComponent implements OnInit {
     this.mangaStateService.mangas$.subscribe((mangas) => {
       this._allMangas = mangas;
       this.mangasUser = this._allMangas;
+
+      this.filter(this.watchStatus);
     });
   }
 

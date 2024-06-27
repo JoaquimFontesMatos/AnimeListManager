@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FriendlistComponent } from './friendlist.component';
+import { MangaGalleryComponent } from './manga-gallery.component';
 
-describe('FriendlistComponent', () => {
-  let component: FriendlistComponent;
-  let fixture: ComponentFixture<FriendlistComponent>;
+describe('MangaGalleryComponent', () => {
+  let component: MangaGalleryComponent;
+  let fixture: ComponentFixture<MangaGalleryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FriendlistComponent]
+      imports: [MangaGalleryComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(FriendlistComponent);
+
+    fixture = TestBed.createComponent(MangaGalleryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

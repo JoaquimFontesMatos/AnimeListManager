@@ -1,6 +1,6 @@
 .wrapper {
   display: grid;
-  grid-template-columns: auto clamp(450px, 25%, 600px) ;
+  grid-template-columns: auto clamp(450px, 25%, 600px);
 }
 
 .register-form {
@@ -59,20 +59,19 @@ h2 {
   color: var(--clr-text) !important;
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 1000px) {
   .wrapper {
-    grid-template-columns: auto clamp(350px, 35%, 500px) ;
+    grid-template-columns: auto clamp(350px, 35%, 500px);
   }
 }
 
-@media screen and (max-width:700px) {
+@media screen and (max-width: 700px) {
   .wrapper {
-    grid-template-columns: auto clamp(350px, 50%, 500px) ;
+    grid-template-columns: auto clamp(350px, 50%, 500px);
   }
 }
 
-
-@media screen and (max-width:500px) {
+@media screen and (max-width: 500px) {
   .wrapper {
     grid-template-columns: 0% auto;
   }
