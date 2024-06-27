@@ -45,6 +45,7 @@ p,
   border: 1px solid var(--accent-color) !important;
   color: var(--clr-text) !important;
   border-radius: 3px;
+  padding: 0.3rem;
 }
 
 .button-details:hover,

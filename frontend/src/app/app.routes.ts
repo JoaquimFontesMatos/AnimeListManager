@@ -6,6 +6,7 @@ import { authGuard } from './guards/auth.guard';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { ShowMineComponent } from './components/manga/show-mine/show-mine.component';
 import { ShowJikanComponent } from './components/manga/show-jikan/show-jikan.component';
+import { MangaGaleryComponent } from './components/manga/manga-galery/manga-galery.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -30,6 +31,11 @@ export const routes: Routes = [
   {
     path: 'add-manga',
     component: ShowJikanComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'manga-galery',
+    component: MangaGaleryComponent,
     canActivate: [authGuard],
   },
 ];

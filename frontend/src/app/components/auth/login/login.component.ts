@@ -43,7 +43,11 @@ export class LoginComponent {
   loading: boolean = false;
   error?: string;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    if (localStorage.getItem('currentUser')) {
+      this.enter();
+    }
+  }
 
   login() {
     try {
@@ -77,5 +81,9 @@ export class LoginComponent {
 
   register() {
     this.router.navigate(['/auth/register/']);
+  }
+
+  enter() {
+    this.router.navigate(['/home/']);
   }
 }

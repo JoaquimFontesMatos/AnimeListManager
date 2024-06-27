@@ -21,7 +21,6 @@ export class ShowMineComponent implements OnInit {
   page: number = 1;
   collectionSize: number = 0;
   pageSize: number = 10;
-  initialLoad: boolean = true;
 
   _allMangas: UserManga[] = [];
   mangasUser: UserManga[] = [];

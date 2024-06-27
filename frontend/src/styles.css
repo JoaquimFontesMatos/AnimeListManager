@@ -28,6 +28,21 @@
   --fs-500: 1.375rem;
   --fs-600: 1.75rem;
   --fs-700: 2.25rem;
+  scrollbar-width: thin; /* Para navegadores Firefox */
+  scrollbar-color: var(--accent-color) var(--secondary-color); /* Para navegadores Firefox */
+}
+
+:root::-webkit-scrollbar {
+  height: 8px; /* Altura da barra de rolagem */
+}
+
+:root::-webkit-scrollbar-thumb {
+  background: var(--accent-color); /* Cor do "polegar" da barra de rolagem */
+  border-radius: 4px; /* Borda arredondada */
+}
+
+:root::-webkit-scrollbar-track {
+  background: var(--accent-color); /* Cor do fundo da barra de rolagem */
 }
 
 body {

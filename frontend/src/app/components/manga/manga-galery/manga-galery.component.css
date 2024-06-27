@@ -1,0 +1,46 @@
+.list-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    perspective: 1000px;
+  }
+  
+  .card-manga {
+    border: 1px solid var(--accent-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    background-color: var(--secondary-color);
+  }
+  
+  .card-manga:hover {
+    transform: scale(1.05);
+    background-color: var(--primary-color);
+  }
+  
+  .card-manga:hover + * {
+    transform: scale(1.03), rotateY(40deg);
+  }
+  
+  .card-header img {
+    width: 100%;
+    height: 350px;
+    display: block;
+  }
+  
+  .card-content {
+    padding: 10px;
+  }
+  
+  .card-content p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--clr-text);
+  }
+  
+  .chapter {
+    opacity: 0.5;
+  }
+  

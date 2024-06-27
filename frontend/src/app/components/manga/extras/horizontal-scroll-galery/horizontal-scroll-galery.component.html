@@ -1,0 +1,12 @@
+<section class="list-section">
+    <div class="card-manga" *ngFor="let mangaUser of mangasUser; let i = index;" (click)="openDialog(mangaUser,i)">
+        <div class="card-header">
+            <img src="{{mangaUser.manga.image}}" alt="">
+        </div>
+        <div class="card-content">
+            <p class="chapter">Total Chapters: {{mangaUser.favoriteManga.currentChapter}}</p>
+            <p class="title">Title: {{mangaUser.manga.title}}</p>
+            <p>Manga Status: {{mangaUser.manga.mangaStatus}}</p>
+        </div>
+    </div>
+</section>

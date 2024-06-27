@@ -87,10 +87,6 @@ export class MangaStateService {
     localStorage.setItem('lastUpdateMangas', JSON.stringify(this._lastUpdate));
 
     this.mangasSubject.next(this._mangas);
-
-    console.log(
-      'last update:' + this._lastUpdate + 'last sync:' + this._lastSync
-    );
   }
 
   private async syncWithBackend() {
