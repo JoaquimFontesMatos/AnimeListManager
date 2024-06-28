@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div *ngIf="!loggedIn" class="wrapper">
   <app-background></app-background>
   <form class="login-form">
     <h2>Login</h2>
@@ -30,5 +30,13 @@
         [disabled]="emailFormControl.invalid||passwordFormControl.invalid" (click)="login()">Login</button>
       <button class="button-login" type="button" mat-stroked-button (click)="register()">Register</button>
     </div>
+  </form>
+</div>
+
+<div *ngIf="loggedIn" class="wrapper">
+   <app-background></app-background>
+  <form class="login-form">
+    <h2>Welcome Back!!!</h2>
+    <button class="button-login" type="button" mat-stroked-button (click)="enter()">Enter</button>
   </form>
 </div>

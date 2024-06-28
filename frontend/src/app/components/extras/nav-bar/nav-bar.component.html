@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary mb-3 manga-nav">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="'/'">
+      <img class="logo" src="/assets/logos/logo10.jpg" alt="">JustAnotherList</a>
+
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <div class="theme-selector">
+            <app-theme-selector></app-theme-selector>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="'/home'" (click)="isMenuCollapsed = true">MyList</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/manga-gallery'" (click)="isMenuCollapsed = true">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/add-manga'" (click)="isMenuCollapsed = true">Search Manga</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

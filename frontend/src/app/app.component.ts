@@ -1,22 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { ThemeService } from './services/theme.service';
+import { Router, RouterOutlet } from '@angular/router';
+import { NavBarComponent } from './components/extras/nav-bar/nav-bar.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavBarComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Just Another List';
 
-  constructor(public themeService: ThemeService) {}
+  constructor(private router: Router) {}
 
-  toggleTheme(): void {
-    const newTheme =
-      this.themeService.currentThemeName === 'light' ? 'dark' : 'light';
-    this.themeService.setTheme(newTheme);
+  validNavLocation(): boolean {
+    if (
+      this.router.url != '/' &&
+      !this.router.url.includes('/#login') &&
+      !this.router.url.includes('/auth')
+    ) {
+      return true;
+    }
+    return false;
   }
 }

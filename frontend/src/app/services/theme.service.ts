@@ -9,19 +9,21 @@ export class ThemeService {
   // Define your theme colors here
   private themes: Record<string, Record<string, string>> = {
     light: {
-      '--primary-color': 'hsl(220, 37%, 97%)',
-      '--secondary-color': 'hsl(0, 0%, 91%)',
-      '--accent-color': '#000000',
-      '--clr-text': '#000000',
-      '--clr-text-disabled': '#bbc8de7f',
+      '--primary-color': 'rgb(245, 246, 250) ',
+      '--secondary-color': 'rgb(232, 232, 232)',
+      '--secondary-color-value': '232, 232, 232',
+      '--accent-color': 'rgb(0,0,0)',
+      '--clr-text': 'rgb(0,0,0)',
+      '--clr-text-disabled': 'rgb(187, 200, 222)',
       '--invert': 'invert(0)',
     },
     dark: {
-      '--primary-color': '#181818',
-      '--secondary-color': 'rgba(11, 44, 67, 0.404)',
-      '--accent-color': 'rgba(44, 170, 255, 0.404)',
-      '--clr-text': '#bbc8de',
-      '--clr-text-disabled': '#bbc8de7f',
+      '--primary-color': 'rgb(24, 24, 24)',
+      '--secondary-color': 'rgb(11, 44, 67)',
+      '--secondary-color-value': '11, 44, 67',
+      '--accent-color': 'rgb(44, 170, 255)',
+      '--clr-text': 'rgb(187, 200, 222)',
+      '--clr-text-disabled': 'rgba(187, 200, 222,0.418)',
       '--invert': 'invert(1)',
     },
   };

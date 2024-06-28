@@ -2,14 +2,13 @@
 :root {
   --transition-duration: 0.25s;
 
-  /* colors */
-  --clr-text: #bbc8de;
-  --clr-text-disabled: #bbc8de7f;
+  --clr-text: rgb(187, 200, 222);
+  --clr-text-disabled: rgb(187, 200, 222);
 
-  --primary-color: #181818;
-  --secondary-color: rgba(11, 44, 67, 0.404);
-  --accent-color: rgba(44, 206, 255, 0.404);
-  --error-color: red;
+  --primary-color: rgb(24, 24, 24);
+  --secondary-color: rgb(11, 44, 67);
+  --accent-color: rgb(44, 206, 255);
+  --error-color: rgb(255, 0, 0);
 
   --invert: invert(1);
 

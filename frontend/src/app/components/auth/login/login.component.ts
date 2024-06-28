@@ -42,10 +42,11 @@ export class LoginComponent {
   ]);
   loading: boolean = false;
   error?: string;
+  loggedIn?: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     if (localStorage.getItem('currentUser')) {
-      this.enter();
+      this.loggedIn = true;
     }
   }
 

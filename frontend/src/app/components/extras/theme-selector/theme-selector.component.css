@@ -1,0 +1,5 @@
+svg {
+  background-color: transparent;
+  fill: var(--clr-text);
+  cursor: pointer;
+}

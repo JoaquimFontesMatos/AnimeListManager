@@ -1,0 +1,32 @@
+.navbar {
+  --bs-navbar-color: var(--clr-text);
+  --bs-navbar-brand-color: var(--clr-text);
+  border-bottom: 1px solid var(--accent-color);
+}
+
+.bg-body-tertiary {
+  --bs-tertiary-bg-rgb: var(--secondary-color-value);
+}
+
+.navbar-nav {
+  flex: 1;
+  display: flex;
+  justify-content: right;
+}
+
+.theme-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

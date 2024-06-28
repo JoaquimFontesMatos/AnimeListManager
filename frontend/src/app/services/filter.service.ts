@@ -39,8 +39,8 @@ export class FilterService {
           ? new Date(b.favoriteManga.dateEdited).getTime()
           : 0;
 
-        return dateB - dateA; // Descending order
+        return dateB - dateA;
       })
-      .slice(0, 3); // Get the first 3 elements
+      .slice(0, 5);
   }
 }
