@@ -26,4 +26,21 @@ export class FilterService {
       (manga) => manga.favoriteManga.watchStatus === status
     );
   }
+
+  filterLast3Mangas(allMangas: UserManga[]): UserManga[] {
+    return allMangas
+      .filter((manga) => manga.favoriteManga.dateEdited !== null)
+      .sort((a, b) => {
+        // Compare the dateEdited properties
+        const dateA = a.favoriteManga.dateEdited
+          ? new Date(a.favoriteManga.dateEdited).getTime()
+          : 0;
+        const dateB = b.favoriteManga.dateEdited
+          ? new Date(b.favoriteManga.dateEdited).getTime()
+          : 0;
+
+        return dateB - dateA; // Descending order
+      })
+      .slice(0, 3); // Get the first 3 elements
+  }
 }

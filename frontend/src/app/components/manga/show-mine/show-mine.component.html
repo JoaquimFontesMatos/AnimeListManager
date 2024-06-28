@@ -15,7 +15,7 @@
       <tr (click)="openDialog(mangaUser, i)" *ngFor="let mangaUser of mangasUser; let i = index; trackBy: trackByMalId">
         <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
         <td class="title">
-          <img [src]="mangaUser.manga.image" class="me-2" style="width: 50px" />
+          <img [src]="mangaUser.manga.image?.mediumImage" class="me-2" style="width: 50px" />
           {{ mangaUser.manga.title }}
         </td>
         <td>{{ mangaUser.manga.mangaStatus }}</td>

@@ -41,23 +41,33 @@ export class ShowJikanComponent {
 
   private processMangas(data: any): void {
     for (let index = 0; index < data.data.length; index++) {
+      //assign general attributes
       this.mangas[index] = new Manga();
       this.mangas[index].title = data.data[index].title;
       this.mangas[index].totalChapters = data.data[index].chapters;
       this.mangas[index].mangaStatus = data.data[index].status;
-      this.mangas[index].image = data.data[index].images.jpg.image_url;
-      this.mangas[index].mal_id = data.data[index].mal_id;
+      this.mangas[index].malId = data.data[index].mal_id;
       this.mangas[index].score = data.data[index].score;
       this.mangas[index].synopsis = data.data[index].synopsis;
       this.mangas[index].type = data.data[index].type;
-      this.mangas[index].published = data.data[index].published;
+      this.mangas[index].published = data.data[index].published.string;
 
+      //assign images
+      let images = {
+        smallImage: data.data[index].images.webp.small_image_url,
+        mediumImage: data.data[index].images.webp.image_url,
+        largeImage: data.data[index].images.webp.large_image_url,
+      };
+      this.mangas[index].image = images;
+
+      //assign themes
       let themes: string[] = [];
       for (let i = 0; i < data.data[index].themes.length; i++) {
         themes[i] = data.data[index].themes[i].name;
       }
       this.mangas[index].themes = themes;
 
+      //assign genres
       let genres: string[] = [];
       for (let i = 0; i < data.data[index].genres.length; i++) {
         genres[i] = data.data[index].genres[i].name;

@@ -11,6 +11,8 @@ const UserSchema = new Schema({
       watchStatus: { type: String, default: "To Watch" },
       currentChapter: { type: Number, default: 0 },
       _id: false,
+      dateEdited: { type: Date },
+      dateAdded: { type: Date, default: Date.now },
     },
   ],
   updatedAt: { type: Date },

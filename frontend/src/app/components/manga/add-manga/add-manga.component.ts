@@ -62,18 +62,18 @@ export class AddMangaComponent {
 
   async saveManga(): Promise<number | undefined> {
     try {
-      if (!this.manga.mal_id) {
+      if (!this.manga.malId) {
         return undefined;
       }
 
-      // Check if manga with mal_id is already saved
+      // Check if manga with malId is already saved
       const isSaved = await firstValueFrom(
-        this.mangaService.isMangaMalIdSaved(this.manga.mal_id)
+        this.mangaService.isMangaMalIdSaved(this.manga.malId)
       );
 
       if (isSaved) {
-        console.log('Manga with mal_id already saved:', this.manga.mal_id);
-        return this.manga.mal_id; // Return mal_id if already saved
+        console.log('Manga with malId already saved:', this.manga.malId);
+        return this.manga.malId; // Return malId if already saved
       }
 
       // If manga is not saved, proceed to save it
@@ -83,7 +83,7 @@ export class AddMangaComponent {
 
       if (savedManga) {
         console.log('Manga saved successfully:', savedManga);
-        return savedManga.mal_id; // Return mal_id of saved manga
+        return savedManga.malId; // Return malId of saved manga
       } else {
         return undefined;
       }

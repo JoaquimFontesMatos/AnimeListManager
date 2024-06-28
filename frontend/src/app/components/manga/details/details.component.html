@@ -2,10 +2,10 @@
   <h2 class="title" mat-dialog-title>Details Manga: {{userManga.manga.title}}</h2>
   <mat-dialog-content>
     <div class="container">
-      <p>Date Added: {{userManga.manga.dateAdded}}</p>
-      <img [src]="userManga.manga.image" class="me-2" style="width: 50px" />
+      <p>Date Added: {{userManga.favoriteManga.dateAdded}}</p>
+      <img [src]="userManga.manga.image?.mediumImage" class="me-2" style="width: 50px" />
       <p>Title: {{userManga.manga.title}}</p>
-      <p>MyAnimeListID: {{userManga.manga.mal_id}}</p>
+      <p>MyAnimeListID: {{userManga.manga.malId}}</p>
       <p>Manga Status: {{userManga.manga.mangaStatus}}</p>
       <p>Score: {{userManga.manga.score}}</p>
       <p>Synopsis: {{userManga.manga.synopsis}}</p>
@@ -24,9 +24,9 @@
           </mat-chip>
         </mat-chip-set>
       </p>
-      <p>Published: {{userManga.manga.published?.string}}</p>
+      <p>Published: {{userManga.manga.published}}</p>
       <p>Type: {{userManga.manga.type}}</p>
-      <p>Date Edited: {{userManga.manga.dateEdited}}</p>
+      <p>Date Edited: {{userManga.favoriteManga.dateEdited}}</p>
 
       <form #form="ngForm" novalidate>
         <div class="modal-body">

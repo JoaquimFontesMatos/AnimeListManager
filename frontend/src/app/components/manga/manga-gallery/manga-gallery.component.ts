@@ -6,11 +6,16 @@ import { FilterService } from '../../../services/filter.service';
 import { MangaStateService } from '../../../services/mangas/manga-state.service';
 import { CommonModule } from '@angular/common';
 import { HorizontalScrollGalleryComponent } from '../extras/horizontal-scroll-gallery/horizontal-scroll-gallery.component';
+import { LastWatchedCarouselComponent } from '../extras/last-watched-carousel/last-watched-carousel.component';
 
 @Component({
   selector: 'app-manga-gallery',
   standalone: true,
-  imports: [CommonModule, HorizontalScrollGalleryComponent],
+  imports: [
+    CommonModule,
+    HorizontalScrollGalleryComponent,
+    LastWatchedCarouselComponent,
+  ],
   templateUrl: './manga-gallery.component.html',
   styleUrl: './manga-gallery.component.css',
 })

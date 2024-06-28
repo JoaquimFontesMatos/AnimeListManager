@@ -1,0 +1,77 @@
+.carousel-container {
+  position: relative;
+  width: 400px; /* Adjust this value to control the overall size */
+  overflow: hidden;
+  aspect-ratio: 3/4;
+}
+
+.carousel-container > ngb-carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.picsum-img-wrapper {
+  width: 400px; /* Fixed width */
+  height: 533.33333333333px; /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picsum-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Customize ngb-carousel control icons */
+::ng-deep .carousel-control-next:hover,
+::ng-deep .carousel-control-prev:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  font-size: var(--fs-600);
+  font-weight: var(--ff-black);
+}
+
+.synopsis {
+  white-space: nowrap; /* Ensures text stays on one line */
+  overflow: hidden; /* Hides any overflow text */
+  text-overflow: ellipsis; /* Shows ellipsis (...) for overflow text */
+}
+
+.carousel-caption {
+  padding: 1rem;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+  filter: drop-shadow(3px);
+  -webkit-filter: drop-shadow(3px);
+}
+
+.genres-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+span {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.3rem;
+}

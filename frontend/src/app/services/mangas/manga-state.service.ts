@@ -60,6 +60,8 @@ export class MangaStateService {
   }
 
   addManga(manga: UserManga) {
+    manga.favoriteManga.dateAdded = new Date();
+
     this._mangas.push(manga);
     localStorage.setItem('userMangas', JSON.stringify(this._mangas));
 
@@ -70,6 +72,8 @@ export class MangaStateService {
   }
 
   updateManga(manga: UserManga, index: number) {
+    manga.favoriteManga.dateEdited = new Date();
+
     this._mangas[index] = manga;
     localStorage.setItem('userMangas', JSON.stringify(this._mangas));
 

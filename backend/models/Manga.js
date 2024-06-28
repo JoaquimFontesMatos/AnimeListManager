@@ -9,30 +9,14 @@ var MangaSchema = new Schema({
   totalChapters: { type: Number },
   mangaStatus: { type: String },
   genres: [{ type: String }],
-  image: { type: String },
-  themes: [{ type: String }],
-  published: {
-    from: { type: Date },
-    prop: {
-      from: {
-        day: { type: Number },
-        month: { type: Number },
-        year: { type: Number },
-      },
-      to: {
-        day: { type: Number },
-        month: { type: Number },
-        year: { type: Number },
-      },
-    },
-    string: { type: String },
-    to: { type: Date },
+  image: {
+    smallImage: { type: String },
+    mediumImage: { type: String },
+    largeImage: { type: String },
   },
+  themes: [{ type: String }],
+  published: { type: String },
   type: { type: String },
-  dateEdited: { type: Date },
-  dateAdded: { type: Date, default: Date.now },
 });
-
-
 
 module.exports = mongoose.model("Manga", MangaSchema);
