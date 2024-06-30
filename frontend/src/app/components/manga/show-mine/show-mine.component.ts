@@ -66,7 +66,7 @@ export class ShowMineComponent implements OnInit {
   }
 
   trackByMalId(index: number, mangaUser: UserManga): any {
-    return mangaUser.favoriteManga.mal_id;
+    return mangaUser.favoriteManga.malId;
   }
 
   async filter(): Promise<void> {

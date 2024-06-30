@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var MangaSchema = new Schema({
-  mal_id: { type: Number, unique: true, required: true },
+  malId: { type: Number, unique: true, required: true },
   title: { type: String },
   score: { type: Number },
   synopsis: { type: String },

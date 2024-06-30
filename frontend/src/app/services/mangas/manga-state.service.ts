@@ -1,139 +1,158 @@
-import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  firstValueFrom,
-  interval,
-  switchMap,
-  timeout,
-} from 'rxjs';
-import { Manga, UserManga } from '../../models/Manga';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, firstValueFrom, interval, Subscription } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
+import { UserManga } from '../../models/Manga';
 import { MangaServiceService } from './manga-service.service';
 import { UserService } from '../user.service';
-import { FavoritedManga } from '../../models/User';
+import { FavoritedManga, User } from '../../models/User';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MangaStateService {
+export class MangaStateService implements OnDestroy {
   private mangasSubject = new BehaviorSubject<UserManga[]>([]);
   mangas$ = this.mangasSubject.asObservable();
 
   private _lastUpdate: Date = new Date();
-  private _lastSync: Date = new Date();
   private _mangas: UserManga[] = [];
+  private _user: User = new User();
+  private _syncSubscription: Subscription = new Subscription();
+  private isSynced: boolean = true;
+  private static SYNC_TIME = 5 * 60 * 1000;
 
   constructor(
     private mangaService: MangaServiceService,
     private userService: UserService
   ) {
-    let savedMangas = localStorage.getItem('userMangas');
-    let lastUpdate = localStorage.getItem('lastUpdateMangas');
-    let lastSync = localStorage.getItem('lastSyncMangas');
+    this.loadFromLocalStorage();
+    this.instantiateUser().then(() => {
+      this.loadMangasFromDatabase();
+    });
+    this.startPeriodicSync();
+  }
+
+  private loadFromLocalStorage() {
+    const savedMangas = localStorage.getItem('userMangas');
+    const lastUpdate = localStorage.getItem('lastUpdateMangas');
 
     if (savedMangas) {
       this._mangas = JSON.parse(savedMangas);
     }
 
     if (lastUpdate) {
-      this._lastUpdate = JSON.parse(lastUpdate);
+      this._lastUpdate = new Date(JSON.parse(lastUpdate));
     }
+  }
 
-    if (lastSync) {
-      this._lastSync = JSON.parse(lastSync);
+  private async instantiateUser(): Promise<void> {
+    try {
+      this._user = await firstValueFrom(this.userService.getUser());
+      this.parseDate();
+    } catch (error) {
+      console.error('Failed to instantiate user:', error);
     }
+  }
 
-    console.log(
-      'last update:' + this._lastUpdate + 'last sync:' + this._lastSync
-    );
+  private loadMangasFromDatabase() {
+    this.mangaService
+      .getMangas()
+      .pipe(
+        catchError((error) => {
+          console.error('Failed to load mangas from database:', error);
+          return []; // Return an empty array or handle appropriately
+        })
+      )
+      .subscribe((databaseMangas: UserManga[]) => {
+        if (this._user.updatedAt && this._user.updatedAt >= this._lastUpdate) {
+          console.log('LOADED FROM DATABASE');
+          this._lastUpdate = this._user.updatedAt;
+          this._mangas = databaseMangas;
+        }
 
-    this.mangaService.getMangas().subscribe((databaseMangas: UserManga[]) => {
-      if (this._lastSync >= this._lastUpdate) {
-        console.log('LOADED FROM DATABASE');
-        this._lastUpdate = this._lastSync;
-        this._mangas = databaseMangas;
-      }
+        this.mangasSubject.next(this._mangas);
+      });
+  }
 
-      this.mangasSubject.next(this._mangas);
-    });
-
-    this.startPeriodicSync();
+  private parseDate() {
+    if (typeof this._user.updatedAt === 'string') {
+      this._user.updatedAt = new Date(this._user.updatedAt);
+    }
+    if (typeof this._lastUpdate === 'string') {
+      this._lastUpdate = new Date(this._lastUpdate);
+    }
   }
 
   addManga(manga: UserManga) {
     manga.favoriteManga.dateAdded = new Date();
-
     this._mangas.push(manga);
-    localStorage.setItem('userMangas', JSON.stringify(this._mangas));
-
-    this._lastUpdate = new Date();
-    localStorage.setItem('lastUpdateManga', JSON.stringify(this._lastUpdate));
-
-    this.mangasSubject.next(this._mangas);
+    this.handleMangaUpdate();
   }
 
   updateManga(manga: UserManga, index: number) {
     manga.favoriteManga.dateEdited = new Date();
-
     this._mangas[index] = manga;
-    localStorage.setItem('userMangas', JSON.stringify(this._mangas));
-
-    this._lastUpdate = new Date();
-    localStorage.setItem('lastUpdateManga', JSON.stringify(this._lastUpdate));
-
-    this.mangasSubject.next(this._mangas);
+    this.handleMangaUpdate();
   }
 
   deleteManga(index: number) {
     this._mangas.splice(index, 1);
-    localStorage.setItem('userMangas', JSON.stringify(this._mangas));
+    this.handleMangaUpdate();
+  }
 
+  private handleMangaUpdate() {
+    this.updateLocalStorage();
+    this.mangasSubject.next(this._mangas);
+    this.isSynced = false;
+  }
+
+  private updateLocalStorage() {
+    localStorage.setItem('userMangas', JSON.stringify(this._mangas));
     this._lastUpdate = new Date();
     localStorage.setItem('lastUpdateMangas', JSON.stringify(this._lastUpdate));
-
-    this.mangasSubject.next(this._mangas);
   }
 
   private async syncWithBackend() {
-    const currentMangas = this._mangas;
-
-    let favoritedMangas: FavoritedManga[] = [];
-
-    for (let index = 0; index < currentMangas.length; index++) {
-      favoritedMangas[index] = currentMangas[index].favoriteManga;
+    if (!this._user) {
+      console.error('SYNC ERROR: No user found');
+      return;
     }
 
-    let user = await firstValueFrom(this.userService.getUser());
-
-    if (!user) {
-      console.log('SYNC ERROR: No user found');
-      return; // Exit the function if no user is found
+    if (this.isSynced) {
+      console.log('SYNC SKIPPED');
+      return;
     }
 
-    user.favoriteManga = favoritedMangas;
-    if (!user.favoriteManga) {
-      console.log('SYNC ERROR: favoriteManga not set');
-      return; // Exit the function if favoriteManga is not set
-    }
+    const favoritedMangas: FavoritedManga[] = this._mangas.map(
+      (m) => m.favoriteManga
+    );
+    this._user.favoriteManga = favoritedMangas;
 
     try {
-      // Send the current state to the backend
-      const savedUser = await firstValueFrom(this.userService.updateUser(user));
-
+      await firstValueFrom(this.userService.updateUser(this._user));
       console.log('SYNCHRONIZED WITH DATABASE');
+      this.isSynced = true;
     } catch (error) {
-      console.log('SYNC ERROR: Failed to update user on the backend', error);
+      console.error('SYNC ERROR: Failed to update user on the backend', error);
     }
   }
 
   private startPeriodicSync() {
-    interval(60000) // Sync every 60 seconds
+    this._syncSubscription = interval(MangaStateService.SYNC_TIME)
       .pipe(
-        switchMap(() => {
-          return this.syncWithBackend();
+        switchMap(() => this.syncWithBackend()),
+        catchError((error) => {
+          console.error('Periodic sync failed:', error);
+          return []; // Handle the error appropriately
         })
       )
       .subscribe(() => {
         console.log('Periodic sync completed');
       });
+  }
+
+  ngOnDestroy() {
+    if (this._syncSubscription) {
+      this._syncSubscription.unsubscribe();
+    }
   }
 }

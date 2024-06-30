@@ -1,6 +1,6 @@
 export class FavoritedManga {
   constructor(
-    public mal_id?: number,
+    public malId?: number,
     public watchStatus: string = 'To Watch',
     public currentChapter: number = 0,
     public dateEdited?: Date,

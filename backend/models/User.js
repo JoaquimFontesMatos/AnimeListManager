@@ -7,7 +7,7 @@ const UserSchema = new Schema({
   password: { type: String, required: true },
   favoriteManga: [
     {
-      mal_id: { type: Number, required: true },
+      malId: { type: Number, required: true },
       watchStatus: { type: String, default: "To Watch" },
       currentChapter: { type: Number, default: 0 },
       _id: false,

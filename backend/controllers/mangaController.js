@@ -18,8 +18,8 @@ mangaController.createManga = async (req, res) => {
     if (err.code === 11000) {
       var error;
 
-      if (Object.keys(err.keyPattern)[0] === "mal_id") {
-        error = "Mal_id Already Used";
+      if (Object.keys(err.keyPattern)[0] === "malId") {
+        error = "MalId Already Used";
       }
 
       console.log(error);
@@ -74,7 +74,7 @@ mangaController.deleteManga = async (req, res) => {
 
 mangaController.getAllMangas = async (req, res) => {
   try {
-    // Perform the aggregation to look up mangas by `mal_id`
+    // Perform the aggregation to look up mangas by `malId`
     const foundMangas = await User.aggregate([
       { $match: { _id: { $eq: req.user._id } } },
       {
@@ -83,8 +83,8 @@ mangaController.getAllMangas = async (req, res) => {
       {
         $lookup: {
           from: "mangas",
-          localField: "favoriteManga.mal_id",
-          foreignField: "mal_id",
+          localField: "favoriteManga.malId",
+          foreignField: "malId",
           as: "mangas",
         },
       },
@@ -153,7 +153,7 @@ mangaController.getByMalIdManga = async (req, res) => {
   try {
     let malId = req.params.malId;
 
-    var manga = await Manga.findOne({ mal_id: { $eq: malId } });
+    var manga = await Manga.findOne({ malId: { $eq: malId } });
 
     if (!manga) {
       return res.status(200).send(false);

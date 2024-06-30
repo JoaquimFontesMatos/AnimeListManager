@@ -49,12 +49,12 @@ userController.addFavoriteManga = async (req, res) => {
 
   const newFavoriteManga = req.body;
 
-  if (!user._id || !newFavoriteManga || !newFavoriteManga.mal_id) {
+  if (!user._id || !newFavoriteManga || !newFavoriteManga.malId) {
     return res.status(400).send("Invalid user ID or favorite manga data");
   }
 
   const isMangaAlreadyAdded = user.favoriteManga.some(
-    (manga) => manga.mal_id === newFavoriteManga.mal_id
+    (manga) => manga.malId === newFavoriteManga.malId
   );
   if (isMangaAlreadyAdded) {
     return res.status(409).send("Manga already exists in favorites");

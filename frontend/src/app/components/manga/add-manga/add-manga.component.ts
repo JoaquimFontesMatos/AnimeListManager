@@ -36,16 +36,16 @@ export class AddMangaComponent {
   save(): void {
     this.userService.getUser().subscribe(async (user: User) => {
       try {
-        // Save manga in the database, and get the mal_id
-        let mal_id = await this.saveManga();
+        // Save manga in the database, and get the malId
+        let malId = await this.saveManga();
 
-        if (mal_id) {
-          if (user.favoriteManga.some((manga) => manga.mal_id === mal_id)) {
+        if (malId) {
+          if (user.favoriteManga.some((manga) => manga.malId === malId)) {
             console.log('Already added!');
             return;
           }
           // Update the favoriteManga object
-          this.favoritedManga.mal_id = mal_id;
+          this.favoritedManga.malId = malId;
 
           await firstValueFrom(
             this.mangaService.addFavoriteManga(this.favoritedManga)

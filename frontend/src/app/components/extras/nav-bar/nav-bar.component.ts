@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeSelectorComponent } from '../theme-selector/theme-selector.component';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -12,4 +13,11 @@ import { ThemeSelectorComponent } from '../theme-selector/theme-selector.compone
 })
 export class NavBarComponent {
   isMenuCollapsed = true;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }
