@@ -46,7 +46,8 @@
     (pageChange)="refreshMangas()">
   </ngb-pagination>
 
-  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshMangas()">
+  <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshMangas()"
+    name="pageSize">
     <option [ngValue]="2">2 items per page</option>
     <option [ngValue]="4">4 items per page</option>
     <option [ngValue]="6">6 items per page</option>

@@ -7,6 +7,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { ShowMineComponent } from './components/manga/show-mine/show-mine.component';
 import { ShowJikanComponent } from './components/manga/show-jikan/show-jikan.component';
 import { MangaGalleryComponent } from './components/manga/manga-gallery/manga-gallery.component';
+import { DetailsJikanComponent } from './components/manga/details-jikan/details-jikan.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -37,5 +38,5 @@ export const routes: Routes = [
     path: 'manga-gallery',
     component: MangaGalleryComponent,
     canActivate: [authGuard],
-  },
+  }
 ];

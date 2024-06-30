@@ -1,22 +1,33 @@
 <div class="container">
   <div class="carousel-wrapper">
-    <app-last-watched-carousel [userMangas]="mangasUser"></app-last-watched-carousel>
+    <app-last-watched-carousel></app-last-watched-carousel>
   </div>
 
-  <h1>Watching</h1>
-  <app-horizontal-scroll-gallery [watchStatus]="'Watching'"></app-horizontal-scroll-gallery>
+  <div class="grid-mangas">
+    <div class="left-column">
+      <h1>Watching</h1>
+      <app-horizontal-scroll-gallery [watchStatus]="'Watching'"></app-horizontal-scroll-gallery>
 
-  <h1>All Mangas</h1>
-  <section class="list-section">
-    <div class="card-manga" *ngFor="let mangaUser of mangasUser; let i = index;" (click)="openDialog(mangaUser,i)">
-      <div class="card-header">
-        <img src="{{mangaUser.manga.image?.largeImage}}" alt="">
-      </div>
-      <div class="card-content">
-        <p class="chapter">Chap {{mangaUser.favoriteManga.currentChapter}}</p>
-        <p class="title">{{mangaUser.manga.title}}</p>
-        <p> {{mangaUser.manga.mangaStatus}}</p>
-      </div>
+      <hr>
+
+      <h1>All Mangas</h1>
+      <section class="list-section">
+        <div class="card-manga" *ngFor="let mangaUser of mangasUser; let i = index;" (click)="openDialog(mangaUser,i)">
+          <div class="card-header">
+            <img src="{{mangaUser.manga.image?.largeImage}}" alt="">
+          </div>
+          <div class="card-content">
+            <p class="chapter">Chap {{mangaUser.favoriteManga.currentChapter}}</p>
+            <p class="title">{{mangaUser.manga.title}}</p>
+            <p> {{mangaUser.manga.mangaStatus}}</p>
+          </div>
+        </div>
+      </section>
     </div>
-  </section>
+
+    <div class="right-column">
+      <h1>Top Mangas</h1>
+      <app-top></app-top>
+    </div>
+  </div>
 </div>

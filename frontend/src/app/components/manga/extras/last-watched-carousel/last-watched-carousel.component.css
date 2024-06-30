@@ -54,13 +54,13 @@ h3 {
   padding: 1rem;
   text-align: left;
   background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 1rem;
   -webkit-border-radius: 1rem;
   -moz-border-radius: 1rem;
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
-  filter: drop-shadow(3px);
+  border-radius: 1rem;
   -webkit-filter: drop-shadow(3px);
+  filter: drop-shadow(3px);
 }
 
 .genres-wrapper {

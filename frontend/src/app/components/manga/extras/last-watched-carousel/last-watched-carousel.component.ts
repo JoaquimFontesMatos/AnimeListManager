@@ -1,14 +1,11 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NgbCarousel, NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserManga } from '../../../../models/Manga';
 import { FilterService } from '../../../../services/filter.service';
 import { CommonModule } from '@angular/common';
+import { MangaStateService } from '../../../../services/mangas/manga-state.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DetailsComponent } from '../../details/details.component';
 
 @Component({
   selector: 'app-last-watched-carousel',
@@ -17,8 +14,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './last-watched-carousel.component.html',
   styleUrl: './last-watched-carousel.component.css',
 })
-export class LastWatchedCarouselComponent implements OnChanges {
-  @Input() userMangas: UserManga[] | undefined;
+export class LastWatchedCarouselComponent {
   displayedMangas: UserManga[] = [];
 
   paused = false;
@@ -28,12 +24,14 @@ export class LastWatchedCarouselComponent implements OnChanges {
   @ViewChild('carousel', { static: true })
   carousel: NgbCarousel = new NgbCarousel();
 
-  constructor(private filterService: FilterService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['userMangas'] && this.userMangas) {
-      this.filter();
-    }
+  constructor(
+    private filterService: FilterService,
+    private mangaStateService: MangaStateService,
+    private dialog: MatDialog
+  ) {
+    this.mangaStateService.mangas$.subscribe((mangas) => {
+      this.displayedMangas = this.filterService.filterLast3Mangas(mangas);
+    });
   }
 
   togglePaused() {
@@ -45,15 +43,13 @@ export class LastWatchedCarouselComponent implements OnChanges {
     this.paused = !this.paused;
   }
 
-  filter() {
-    if (this.userMangas) {
-      this.displayedMangas = this.filterService.filterLast3Mangas(
-        this.userMangas
-      );
-    }
-  }
-
   trackByFn(index: number, userManga: UserManga): string | undefined {
     return userManga.manga.image?.largeImage;
+  }
+
+  openDialog(userManga: UserManga, index: number) {
+    this.dialog.open(DetailsComponent, {
+      data: { userManga, index },
+    });
   }
 }

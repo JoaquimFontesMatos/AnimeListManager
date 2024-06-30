@@ -1,0 +1,12 @@
+<section class="list-section">
+  <div class="card-manga" *ngFor="let manga of mangas; let i = index;" (click)="openDialog(manga)">
+    <div class="card-header">
+      <img src="{{manga.images.webp.image_url}}" alt="">
+      <div class="card-content">
+        <p class="chapter">Chap {{manga.chapters}}</p>
+        <p class="title">{{manga.title}}</p>
+        <p> {{manga.score}}</p>
+      </div>
+    </div>
+  </div>
+</section>

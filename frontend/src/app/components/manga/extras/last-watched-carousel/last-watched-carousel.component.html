@@ -1,6 +1,7 @@
 <div class="carousel-container">
   <ngb-carousel #carousel [interval]="5000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus">
-    <ng-template ngbSlide class="carousel-slide" *ngFor="let userManga of displayedMangas; trackBy: trackByFn">
+    <ng-template ngbSlide class="carousel-slide"
+      *ngFor="let userManga of displayedMangas; let i = index; trackBy: trackByFn">
       <div class="carousel-caption">
         <div class="genres-wrapper"><span *ngFor="let genre of userManga.manga.genres">
             {{ genre }}<br />
@@ -8,7 +9,7 @@
         <h3>{{userManga.manga.title}}</h3>
         <p class="synopsis">{{userManga.manga.synopsis}}</p>
       </div>
-      <div class="picsum-img-wrapper">
+      <div class="picsum-img-wrapper" (click)="openDialog(userManga, i)">
         <img [src]="userManga.manga.image?.largeImage" alt="{{userManga.manga.title}} image" />
       </div>
     </ng-template>
